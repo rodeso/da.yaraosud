@@ -1,9 +1,8 @@
-#ifndef YAATWSM_GRAPH_H
-#define YAATWSM_GRAPH_H
+#ifndef YARAOSUD_GRAPH_H
+#define YARAOSUD_GRAPH_H
 
 
 #include "Include.h"
-#include "Node.h"
 
 template <class T>
 class Edge;

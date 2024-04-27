@@ -11,8 +11,8 @@
  *  - Pedro Trindade Gonçalves Cadilhe Santos (up202205900@up.pt)
  *  - Rodrigo Dias Ferreira Loureiro de Sousa (up202205751@up.pt)
  */
-#ifndef YAATWSM_INCLUDE_H
-#define YAATWSM_INCLUDE_H
+#ifndef YARAOSUD_INCLUDE_H
+#define YARAOSUD_INCLUDE_H
 
 #include <iostream>
 #include <sstream>
@@ -32,4 +32,4 @@ static int LINE_SIZE_ = 130;
 
 using namespace std;
 
-#endif //YAATWSM_INCLUDE_H
+#endif //YARAOSUD_INCLUDE_H

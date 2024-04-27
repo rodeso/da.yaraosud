@@ -1,10 +1,8 @@
-#ifndef YAATWSM_MENU_H
-#define YAATWSM_MENU_H
+#ifndef YARAOSUD_MENU_H
+#define YARAOSUD_MENU_H
 #include "Include.h"
 #include "Graph.h"
-#include "Node.h"
 #include "ReadFunctions.h"
-#include "OperationFunctions.h"
 
 /**
  * @brief Class that represents the system menus' interface and all of its stored data.
@@ -16,7 +14,7 @@ class Menu {
         /**
         * @brief Graph structure.
         */
-        Graph<Node> graph;
+        Graph<int> graph;
         /**
         * @brief Dictionary to help relate the names of the cities with its respective code.
         */
@@ -66,4 +64,4 @@ class Menu {
 };
 
 
-#endif //YAATWSM_MENU_H
+#endif //YARAOSUD_MENU_H

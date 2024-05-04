@@ -32,3 +32,6 @@
 *.app
 
 /csv/real
+/cmake-build-debug
+/.idea
+/.vscode

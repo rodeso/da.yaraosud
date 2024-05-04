@@ -12,8 +12,8 @@ class ReadFunctions {
     private:
 
     public:
-        Graph<Node> readToy(int i);
-        Graph<Node> readExtra(int i);
+        static Graph<Node> readToy(int i);
+        static Graph<Node> readExtra(int i);
 };
 
 

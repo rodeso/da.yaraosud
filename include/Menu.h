@@ -15,7 +15,7 @@ class Menu {
         /**
         * @brief Graph structure.
         */
-        Graph<int> graph;
+        Graph<Node> graph;
         /**
         * @brief Dictionary to help relate the names of the cities with its respective code.
         */
@@ -46,22 +46,6 @@ class Menu {
          * @brief Function to initialize the case 5 of the menu
          */
         void case5();
-        /**
-         * @brief Function to initialize the case 6 of the menu
-         */
-        void case6();
-        /**
-         * @brief Function to initialize the case 7 of the menu
-         */
-        void case7();
-        /**
-         * @brief Function to initialize the case 8 of the menu
-         */
-        void case8();
-        /**
-         * @brief Function to initialize the case 9 of the menu
-         */
-        void case9();
 };
 
 

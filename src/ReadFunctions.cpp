@@ -34,8 +34,8 @@ Graph<Node> ReadFunctions::readToy(int i) {
             istringstream ss(line);
             string id1, id2, distance;
             if (getline(ss, id1, ',') && getline(ss, id2, ',') && getline(ss, distance, ',')) {
-                Node a(id1);
-                Node z(id2);
+                Node a(stoi(id1), "N/A", {0.0,0.0});
+                Node z(stoi(id2), "N/A", {0.0,0.0});
                 if (g.findVertex(a)==nullptr){g.addVertex(a);}
                 if (g.findVertex(z)==nullptr){g.addVertex(z);}
                 double d = stod(distance);
@@ -51,8 +51,8 @@ Graph<Node> ReadFunctions::readToy(int i) {
             istringstream ss(line);
             string id1, id2, distance, label1, label2;
             if (getline(ss, id1, ',') && getline(ss, id2, ',') && getline(ss, distance, ',') && getline(ss, label1, ',') && getline(ss, label2, ',')) {
-                Node a(id1, label1);
-                Node z(id2, label2);
+                Node a(stoi(id1), label1, {0.0,0.0});
+                Node z(stoi(id2), label2, {0.0,0.0});
                 if (g.findVertex(a)==nullptr){g.addVertex(a);}
                 if (g.findVertex(z)==nullptr){g.addVertex(z);}
                 double d = stod(distance);
@@ -60,7 +60,52 @@ Graph<Node> ReadFunctions::readToy(int i) {
             }
 
         }
+    }
 
+    return g;
+}
+Graph<Node> ReadFunctions::readExtra(int i) {
+    vector<Node> nodes_extra;
+    Graph<Node> g;
+    if (i != 25 && i != 50 && i != 75 && i != 100 && i != 200 && i != 300 && i != 400 && i != 500 && i != 600 && i != 700 && i != 800 && i != 900) { cout << "Error: Extra csv number doesn't exist."; return g;}
+
+    string path = "../csv/extra/edges_" + to_string(i) + ".csv";
+    string nodepath = "../csv/extra/nodes.csv";
+
+
+    ifstream file(nodepath);
+    if (!file.is_open()) {cerr << "Error (204): Wrong Path"; return g;}
+    string fLine;
+    getline(file, fLine);
+
+    string line;
+    while (getline(file, line)) {
+        istringstream ss(line);
+        string id1, lon, lat;
+        if (getline(ss, id1, ',') && getline(ss, lon, ',') && getline(ss, lat, ',')) {
+            pair<double, double> coordinates = {stod(lon),stod(lat)};
+            Node a(stoi(id1),"N/A",coordinates);
+            if (g.findVertex(a)==nullptr){g.addVertex(a);}
+        }
+    }
+
+
+    ifstream file2(path);
+    if (!file2.is_open()) {cerr << "Error (204): Wrong Path"; return g;}
+    string fLine2;
+    getline(file, fLine2);
+
+
+    string line2;
+    while (getline(file2, line2)) {
+        istringstream ss(line2);
+        string id1, id2, distance;
+        if (getline(ss, id1, ',') && getline(ss, id2, ',') && getline(ss, distance, ',')) {
+
+            Node a(stoi(id1),"N/A", {0.0,0.0});
+            Node z(stoi(id2), "N/A", {0.0,0.0});
+            g.addEdge(g.findVertex(a), g.findVertex(z), stod(distance));
+        }
     }
 
     return g;

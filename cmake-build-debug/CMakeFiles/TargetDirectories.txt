@@ -1,3 +1,0 @@
-/home/afonso/Desktop/DA/da.yaraosud/cmake-build-debug/CMakeFiles/DA2G195.dir
-/home/afonso/Desktop/DA/da.yaraosud/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/afonso/Desktop/DA/da.yaraosud/cmake-build-debug/CMakeFiles/rebuild_cache.dir

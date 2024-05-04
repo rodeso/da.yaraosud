@@ -2,6 +2,7 @@
 #define YARAOSUD_MENU_H
 #include "Include.h"
 #include "Graph.h"
+#include "Node.h"
 #include "ReadFunctions.h"
 
 /**

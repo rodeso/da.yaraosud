@@ -4,6 +4,69 @@
  * @brief Function that reads all the Reservoirs information in the selected data folder, allowing for the creation of the nodes of its type, and the population of the graph.
  * @details Complexity
  */
+
+Graph<Node> ReadFunctions::readToy(int i) {
+    vector<Node> nodes_toy;
+    Graph<Node> g;
+    if (i>2 || i<0) { cout << "Error: Toy csv number doesn't exist."; return g;}
+
+    string path = "../csv/toy/";
+    switch(i) {
+        case 0:
+            path = path+"shipping.csv";
+            break;
+        case 1:
+            path = path+"stadiums.csv";
+            break;
+        case 2:
+            path = path+"tourism.csv";
+            break;
+    }
+
+    ifstream file(path);
+    if (!file.is_open()) {cerr << "Error (204): Wrong Path"; return g;}
+    string fLine;
+    getline(file, fLine);
+
+    if(i==0 or i==1) {
+        string line;
+        while (getline(file, line)) {
+            istringstream ss(line);
+            string id1, id2, distance;
+            if (getline(ss, id1, ',') && getline(ss, id2, ',') && getline(ss, distance, ',')) {
+                Node a(id1);
+                Node z(id2);
+                if (g.findVertex(a)==nullptr){g.addVertex(a);}
+                if (g.findVertex(z)==nullptr){g.addVertex(z);}
+                double d = stod(distance);
+                g.addEdge(a,z,d);
+            }
+
+        }
+
+    }
+    else {
+        string line;
+        while (getline(file, line)) {
+            istringstream ss(line);
+            string id1, id2, distance, label1, label2;
+            if (getline(ss, id1, ',') && getline(ss, id2, ',') && getline(ss, distance, ',') && getline(ss, label1, ',') && getline(ss, label2, ',')) {
+                Node a(id1, label1);
+                Node z(id2, label2);
+                if (g.findVertex(a)==nullptr){g.addVertex(a);}
+                if (g.findVertex(z)==nullptr){g.addVertex(z);}
+                double d = stod(distance);
+                g.addEdge(a,z,d);
+            }
+
+        }
+
+    }
+
+    return g;
+}
+
+/*
 vector<Node> ReadFunctions::readReservoirs(string const &pathname) {
     vector<Node> nodesReservoirs;
 
@@ -33,9 +96,7 @@ vector<Node> ReadFunctions::readReservoirs(string const &pathname) {
     return nodesReservoirs;
 }
 
-/**
-* @brief Function that reads all the Cities information in the selected data folder, allowing for the creation of the nodes of its type, and the population of the graph and the dictionary.
-*/
+
 vector<Node> ReadFunctions::readCities(unordered_map<string, string> &cityDict, string const &pathname) {
     vector<Node> nodesCities;
 
@@ -69,9 +130,7 @@ vector<Node> ReadFunctions::readCities(unordered_map<string, string> &cityDict, 
     return nodesCities;
 }
 
-/**
-* @brief Function that reads all the Stations information in the selected data folder, allowing for the creation of the nodes of its type, and the population of the graph.
-*/
+
 vector<Node> ReadFunctions::readStations(string const &pathname) {
     vector<Node> nodesStations;
 
@@ -97,9 +156,7 @@ vector<Node> ReadFunctions::readStations(string const &pathname) {
     return nodesStations;
 }
 
-/**
-* @brief Function that reads all the Pipes information in the selected data folder, allowing for the creation of the edges in the graph.
-*/
+
 void ReadFunctions::readPipes(Graph<Node> &graph, std::string const &pathname) {
     ifstream file(pathname);
     if (!file.is_open()) {
@@ -136,5 +193,5 @@ void ReadFunctions::readPipes(Graph<Node> &graph, std::string const &pathname) {
     }
     file.close();
 }
-
+*/
 

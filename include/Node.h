@@ -38,6 +38,7 @@ class Node {
         * @brief Function that prints the information of the various types of Nodes that are being made according to the chosen data folder.
         */
         void print() {
+            cout << string(LINE_SIZE_, '-') << endl;
             cout << "Index: " << to_string(index_) << "   Label: " << label_ << "   Coordinates: " << to_string(coordinates_.first) << "," << to_string(coordinates_.second) << endl;
             cout << string(LINE_SIZE_, '-') << endl;
         }

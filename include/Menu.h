@@ -5,6 +5,7 @@
 #include "Node.h"
 #include "ReadFunctions.h"
 #include "OperationFunctions.h"
+#include "Timer.h"
 
 /**
  * @brief Class that represents the system menus' interface and all of its stored data.

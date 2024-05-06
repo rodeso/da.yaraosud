@@ -21,7 +21,7 @@ void Menu::run() {
         cout << "Select your data folder:" << endl;
         cout << "1 - Toy." << endl;
         cout << "2 - Extra Medium." << endl;
-        cout << "3 - Real-word." << endl;
+        cout << "3 - Real-world." << endl;
         cout << "0 - Exit." << endl;
         cout << string(LINE_SIZE_, '-') << endl;
         cout << "Please select the task you wish to perform by inputting its number: ";
@@ -41,9 +41,14 @@ void Menu::run() {
                     cout << "Please enter the number of the desired Toy data set: ";
                     getline(cin, csv_number);
                     graph = ReadFunctions::readToy(stoi(csv_number));
+
                     for (auto u : graph.getVertexSet()) {
                         u->getInfo().print();
+                        for (auto e : u->getAdj()) {
+                            cout << "Edge From: " <<  e->getOrig()->getInfo().getIndex() << " To " << e->getDest()->getInfo().getIndex() << " (" << e->getWeight() << ")" << endl;
+                        }
                     }
+
                     goto load;
                 case '2':
                     cout << "Available Extra Medium data sets: 25,50,75,100,200,300,400,500,600,700,800,900" << endl;
@@ -72,6 +77,7 @@ void Menu::run() {
     //Real Menu
     while (true) {
         string decision;
+
         cout << string(LINE_SIZE_, '-') << endl;
         cout << "Select your operation:" << endl;
         cout << string(LINE_SIZE_, '-') << endl;
@@ -83,6 +89,7 @@ void Menu::run() {
         cout << "0 - Exit." << endl;
         cout << string(LINE_SIZE_, '-') << endl;
         cout << "Please select the task you wish to perform by inputting its number: ";
+        for (auto u : graph.getVertexSet()) {u->setVisited(false);}
         getline(cin, decision);
         cout << string(LINE_SIZE_, '-') << endl;
         cout << endl;
@@ -123,7 +130,9 @@ void Menu::run() {
 
 
 void Menu::case1() {
+
     OperationFunctions::solve_tsp(graph);
+
 
 }
 

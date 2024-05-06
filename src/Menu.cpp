@@ -77,7 +77,6 @@ void Menu::run() {
     //Real Menu
     while (true) {
         string decision;
-
         cout << string(LINE_SIZE_, '-') << endl;
         cout << "Select your operation:" << endl;
         cout << string(LINE_SIZE_, '-') << endl;

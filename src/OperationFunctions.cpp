@@ -9,7 +9,7 @@ double OperationFunctions::distance(Graph<Node>& graph, Node src, Node dest) {
              return u->getWeight();
          }
      }
-     return -INF;
+     return INF;
 }
 
 // Backtracking function to find the minimum distance
@@ -66,6 +66,5 @@ void OperationFunctions::solve_tsp(Graph<Node>& graph) {
     cout << "0 \n";
     cout << "Minimum Distance: " << min_distance << endl;
 
-    cout << "Calculation time: " << timer.elapsed()<< " Milliseconds\n";
+    cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 }
-

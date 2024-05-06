@@ -4,6 +4,7 @@
 #include "Graph.h"
 #include "Node.h"
 #include "ReadFunctions.h"
+#include "OperationFunctions.h"
 
 /**
  * @brief Class that represents the system menus' interface and all of its stored data.
@@ -43,9 +44,9 @@ class Menu {
          */
         void case4();
         /**
-         * @brief Function to initialize the case 5 of the menu
+         * @brief Function to initialize the case 9 of the menu
          */
-        void case5();
+        void case9();
 };
 
 

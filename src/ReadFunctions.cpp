@@ -57,10 +57,13 @@ Graph<Node> ReadFunctions::readToy(int i) {
             if (getline(ss, id1, ',') && getline(ss, id2, ',') && getline(ss, distance, ',') && getline(ss, label1, ',') && getline(ss, label2, ',')) {
                 Node a(stoi(id1), label1, {0.0,0.0});
                 Node z(stoi(id2), label2, {0.0,0.0});
-                if (g.findVertex(a)==nullptr){g.addVertex(a); a.print();}
-                if (g.findVertex(z)==nullptr){g.addVertex(z); z.print();}
+                if (g.findVertex(a)==nullptr){g.addVertex(a); }
+                if (g.findVertex(z)==nullptr){g.addVertex(z); }
                 double d = stod(distance);
-                g.addEdge(a,z,d);
+                if(!g.addEdge(a,z,d))
+                {
+                    cout << "HYYAAAAA\n";
+                }
             }
 
         }

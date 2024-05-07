@@ -118,17 +118,16 @@ vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph) {
 
 void OperationFunctions::tApprox(Graph<Node> &graph) {
     Timer timer;
-    Node i(0,"dummy",{0.0,0.0});
     vector<Vertex<Node>*> mst = prims(graph);
-
     vector<int> minpath;
     double min_distance=0;
     for (auto u : graph.getVertexSet()) {u->setVisited(false);}
     Vertex<Node>* previousVertex = nullptr;
+    Vertex<Node>* startingVertex = nullptr;
 
     timer.start();
 
-    //Isto abaixo está incompleto e não sei se está no caminho certo para o resultado, mas depois vamos ver
+    //This might work?? Or at least its close
     for (auto vertex : mst) {
         if (previousVertex != nullptr) {
 
@@ -148,7 +147,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
             if (!vertex_is_neighbour) {
                 vertex->setVisited(true);
                 minpath.push_back(vertex->getInfo().getIndex());
-                min_distance+= 100; // random stuff while we dont have the haversine real thing implemented
+                min_distance+= 100; // random stuff while we dont have the haversine stuff implemented
                 previousVertex = vertex;
             }
 
@@ -156,6 +155,13 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
         } else {
             previousVertex = vertex;
             minpath.push_back(vertex->getInfo().getIndex());
+            startingVertex= vertex;
+        }
+    }
+
+    for (auto edge: previousVertex->getAdj()) { //adding the distance of returning back to Node 0
+        if (edge->getDest()==startingVertex) {
+            min_distance+=edge->getWeight();
         }
     }
 
@@ -166,6 +172,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
     cout << "Minimum Distance: " << min_distance << endl;
 
     cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+
 }
 
 

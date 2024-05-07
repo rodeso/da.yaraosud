@@ -130,12 +130,14 @@ void Menu::run() {
 
 void Menu::case1() {
 
-    OperationFunctions::solve_tsp(graph);
+    OperationFunctions::bound_tsp(graph);
 
 
 }
 
 void Menu::case2() {
+
+    OperationFunctions::tApprox(graph);
 //to be done
 }
 

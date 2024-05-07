@@ -3,7 +3,7 @@ Yet Another Routing Algorithm for Ocean Shipping and Urban Deliveries (YARAOSUD)
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 
-- **Project name:** DA1G195 - Yet Another Routing Algorithm for Ocean Shipping and Urban Deliveries (YARAOSUD)
+- **Project name:** DA2G195 - Yet Another Routing Algorithm for Ocean Shipping and Urban Deliveries (YARAOSUD)
 - **Short description:** Console-based Travelling Salesperson Problem Solver
 - **Environment:** Unix/Windows console
 - **Tools:** C++

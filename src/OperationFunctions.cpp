@@ -1,6 +1,12 @@
 #include "../include/OperationFunctions.h"
 const int INF = INT_MAX;
 
+
+
+//------------Backtracking Algorithm--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
 // Function to calculate the distance between two cities
 double OperationFunctions::distance(Graph<Node>& graph, Node src, Node dest) {
     if(graph.findVertex(src)->getAdj().empty()) cout << src.getIndex() << "'s Adj is empty." << endl;
@@ -43,7 +49,7 @@ void OperationFunctions::backtracking(Graph<Node>& graph, vector<int>& path, vec
 }
 
 // Main function to solve TSP using backtracking
-void OperationFunctions::solve_tsp(Graph<Node>& graph) {
+void OperationFunctions::bound_tsp(Graph<Node>& graph) {
     Timer timer;
     vector<int> path;
     vector<int> minpath;
@@ -68,3 +74,114 @@ void OperationFunctions::solve_tsp(Graph<Node>& graph) {
 
     cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 }
+
+
+
+//------------Triangular Approximation Heuristic--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph) {
+    Timer timer;
+    Node i(0,"dummy",{0.0,0.0});
+    Vertex<Node>* startVertex = graph.findVertex(i);
+    priority_queue<pair<double, Vertex<Node>*>, vector<pair<double, Vertex<Node>*>>, greater<>> pq;
+    vector<Vertex<Node>*> mst;
+    timer.start();
+
+    //mst.push_back(startVertex);
+
+    startVertex->setVisited(true);
+    for (auto edge : startVertex->getAdj()) {
+        pq.push({edge->getWeight(), edge->getDest()});
+    }
+
+    while (!pq.empty()) {
+        auto [weight, vertex] = pq.top();
+        pq.pop();
+        if (!vertex->isVisited()) {
+            vertex->setVisited(true);
+            mst.push_back(vertex);
+
+            // Add adjacent vertices to the priority queue
+            for (auto edge : vertex->getAdj()) {
+                if (!edge->getDest()->isVisited()) {
+                    pq.push({edge->getWeight(), edge->getDest()});
+                }
+            }
+        }
+    }
+    cout << "Calculation of MST time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    return mst;
+}
+
+
+void OperationFunctions::tApprox(Graph<Node> &graph) {
+    Timer timer;
+    Node i(0,"dummy",{0.0,0.0});
+    vector<Vertex<Node>*> mst = prims(graph);
+
+    vector<int> minpath;
+    double min_distance=0;
+    for (auto u : graph.getVertexSet()) {u->setVisited(false);}
+    Vertex<Node>* previousVertex;
+
+    timer.start();
+
+    //Isto abaixo está incompleto e não sei se está no caminho certo para o resultado, mas depois vamos ver
+    for (auto vertex : mst) {
+        if (previousVertex != nullptr) {
+            bool vertex_is_neighbour=false;
+            for (auto edge : previousVertex->getAdj()) {
+                if (edge->getDest() == vertex) {
+                    vertex_is_neighbour=true;
+                    if (!vertex->isVisited()) {
+                        minpath.push_back(vertex->getInfo().getIndex());
+                        min_distance += edge->getWeight();
+                        previousVertex = vertex;
+                    }
+                    break;
+                }
+            }
+            if(!vertex_is_neighbour) {
+
+            }
+        } else {previousVertex = vertex;}
+    }
+
+    // Output the result
+    cout << "Optimal Path: " << endl;
+    for (int citeh : minpath) cout << citeh << " -> ";
+    cout << "0 \n";
+    cout << "Minimum Distance: " << min_distance << endl;
+
+    cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

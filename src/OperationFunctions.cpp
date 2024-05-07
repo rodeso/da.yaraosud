@@ -89,7 +89,7 @@ vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph) {
     vector<Vertex<Node>*> mst;
     timer.start();
 
-    //mst.push_back(startVertex);
+    mst.push_back(startVertex);
 
     startVertex->setVisited(true);
     for (auto edge : startVertex->getAdj()) {
@@ -124,18 +124,20 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
     vector<int> minpath;
     double min_distance=0;
     for (auto u : graph.getVertexSet()) {u->setVisited(false);}
-    Vertex<Node>* previousVertex;
+    Vertex<Node>* previousVertex = nullptr;
 
     timer.start();
 
     //Isto abaixo está incompleto e não sei se está no caminho certo para o resultado, mas depois vamos ver
     for (auto vertex : mst) {
         if (previousVertex != nullptr) {
+
             bool vertex_is_neighbour=false;
             for (auto edge : previousVertex->getAdj()) {
                 if (edge->getDest() == vertex) {
                     vertex_is_neighbour=true;
                     if (!vertex->isVisited()) {
+                        vertex->setVisited(true);
                         minpath.push_back(vertex->getInfo().getIndex());
                         min_distance += edge->getWeight();
                         previousVertex = vertex;
@@ -143,10 +145,18 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
                     break;
                 }
             }
-            if(!vertex_is_neighbour) {
-
+            if (!vertex_is_neighbour) {
+                vertex->setVisited(true);
+                minpath.push_back(vertex->getInfo().getIndex());
+                min_distance+= 100; // random stuff while we dont have the haversine real thing implemented
+                previousVertex = vertex;
             }
-        } else {previousVertex = vertex;}
+
+
+        } else {
+            previousVertex = vertex;
+            minpath.push_back(vertex->getInfo().getIndex());
+        }
     }
 
     // Output the result

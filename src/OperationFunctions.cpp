@@ -225,7 +225,7 @@ void OperationFunctions::divideAndConquer() {
 
 
 
-/*void OperationFunctions::xApprox(Graph<Node> &graph) {
+void OperationFunctions::xApprox(Graph<Node> &graph) {
     Timer timer;
     vector<int> minpath;
     double min_distance=0;
@@ -309,8 +309,7 @@ void OperationFunctions::divideAndConquer() {
     cout << "Minimum Distance: " << min_distance << endl;
 
     cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
-}*/
-
+}
 
 
 

@@ -21,5 +21,5 @@ auto Haversine::calculate_distance(const Haversine::angle_t latitude1, const Hav
 
 // convert our passed value to radians_t
 auto Haversine::convert(const angle_t angle) -> radians_t {
-    return angle * (numbers::pi / 180);
+    return angle * (3.14159265358979323846 / 180);
 }

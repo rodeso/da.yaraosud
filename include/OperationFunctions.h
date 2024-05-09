@@ -17,8 +17,8 @@ class OperationFunctions {
 
         static vector<Vertex<Node>*> prims(Graph<Node> &graph, int i);
         static void tApprox(Graph<Node> &graph);
-        //static void xApprox(Graph<Node> &graph);
-        static void divideAndConquer()
+        static void xApprox(Graph<Node> &graph);
+        static void divideAndConquer();
 };
 
 

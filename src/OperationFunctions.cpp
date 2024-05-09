@@ -49,7 +49,7 @@ void OperationFunctions::backtracking(Graph<Node>& graph, vector<int>& path, vec
 }
 
 // Main function to solve TSP using backtracking
-void OperationFunctions::bound_tsp(Graph<Node>& graph) {
+void OperationFunctions::bound_2(Graph<Node>& graph) {
     Timer timer;
     vector<int> path;
     vector<int> minpath;

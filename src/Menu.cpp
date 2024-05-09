@@ -136,7 +136,7 @@ void Menu::run() {
 
 void Menu::case1() {
 
-    OperationFunctions::bound_tsp(graph);
+    OperationFunctions::bound_2(graph);
 
 
 }

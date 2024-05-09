@@ -15,7 +15,7 @@ public:
 
     static void backtracking(Graph<Node> &graph, vector<int> &path, vector<int> &minpath, Node current_city, double &min_distance, double &total_distance);
 
-    static void bound_tsp(Graph<Node> &graph);
+    static void bound_2(Graph<Node> &graph);
 
     static vector<Vertex<Node> *> prims(Graph<Node> &graph, int i);
 

@@ -31,6 +31,7 @@
 #include <cstdio>
 #include <ctime>
 #include <cmath>
+#include <stack>
 
 static int LINE_SIZE_ = 130;
 

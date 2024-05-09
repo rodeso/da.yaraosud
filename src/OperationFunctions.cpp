@@ -81,9 +81,9 @@ void OperationFunctions::bound_tsp(Graph<Node>& graph) {
 
 
 
-vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph) {
+vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph, int c) {
     Timer timer;
-    Node i(0,"dummy",{0.0,0.0});
+    Node i(c,"dummy",{0.0,0.0});
     Vertex<Node>* startVertex = graph.findVertex(i);
     priority_queue<pair<double, Vertex<Node>*>, vector<pair<double, Vertex<Node>*>>, greater<>> pq;
     vector<Vertex<Node>*> mst;
@@ -118,14 +118,15 @@ vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph) {
 
 void OperationFunctions::tApprox(Graph<Node> &graph) {
     Timer timer;
-    vector<Vertex<Node>*> mst = prims(graph);
     vector<int> minpath;
     double min_distance=0;
-    for (auto u : graph.getVertexSet()) {u->setVisited(false);}
     Vertex<Node>* previousVertex = nullptr;
     Vertex<Node>* startingVertex = nullptr;
 
     timer.start();
+    vector<Vertex<Node>*> mst = prims(graph, 0);
+    for (auto u : graph.getVertexSet()) {u->setVisited(false);};
+
 
     //This might work?? Or at least its close
     for (auto vertex : mst) {
@@ -147,7 +148,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
             if (!vertex_is_neighbour) {
                 vertex->setVisited(true);
                 minpath.push_back(vertex->getInfo().getIndex());
-                min_distance+= 100; // random stuff while we dont have the haversine stuff implemented
+                min_distance+= Haversine::calculate_distance(previousVertex->getInfo().getCoordinates().first, previousVertex->getInfo().getCoordinates().second, vertex->getInfo().getCoordinates().first, vertex->getInfo().getCoordinates().second); // random stuff while we dont have the haversine stuff implemented
                 previousVertex = vertex;
             }
 
@@ -176,12 +177,139 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
 }
 
 
+//------------Alternative Heuristic--------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+Vertex<Node>* closestVertex(Vertex<Node>* current, Graph<Node> &graph) {
+    double current_distance = INF;
+    Vertex<Node>* current_node = nullptr;
+    if (current->getInfo().getCoordinates().first == 0.0 && current->getInfo().getCoordinates().second == 0.0) {
+        for (auto e : current->getAdj()) {
+            if (e->getWeight() < current_distance) {
+                current_distance = e->getWeight();
+                current_node = e->getDest();
+
+            }
+        }
+    }
+    else {
+        for (auto u : graph.getVertexSet()) {
+            if (current_distance > Haversine::calculate_distance(current->getInfo().getCoordinates().first, current->getInfo().getCoordinates().second, u->getInfo().getCoordinates().first, u->getInfo().getCoordinates().second)) {
+                current_distance = Haversine::calculate_distance(current->getInfo().getCoordinates().first, current->getInfo().getCoordinates().second, u->getInfo().getCoordinates().first, u->getInfo().getCoordinates().second);
+                current_node = u;
+            }
+        }
+    }
+
+    return current_node;
+}
+
+bool allVisited(Graph<Node> &graph) {
+    bool flag = false;
+    int i = 0;
+    for (auto u : graph.getVertexSet()) {
+        if (u->isVisited()) { i++; }
+        if (i == graph.getVertexSet().size()) { flag = true; }
+    }
+    return flag;
+}
 
 
 
 
+void OperationFunctions::divideAndConquer() {
+
+}
 
 
+
+
+/*void OperationFunctions::xApprox(Graph<Node> &graph) {
+    Timer timer;
+    vector<int> minpath;
+    double min_distance=0;
+    int important;
+    stack<Vertex<Node>*> to_reset;
+    Vertex<Node>* previousVertex = nullptr;
+    Vertex<Node>* startingVertex = nullptr;
+
+    timer.start();
+    vector<Vertex<Node>*> mst = prims(graph, 0);
+    for (auto u : graph.getVertexSet()) {u->setVisited(false);};
+
+    bool there_is_closest = false;
+
+    //This might work?? Or at least its close
+    while (!allVisited(graph)) {
+
+        for (auto vertex : mst) {
+            if (previousVertex != nullptr) {
+
+                if (closestVertex(previousVertex,graph)!=vertex) {
+                    previousVertex->setVisited(false);
+                    important = previousVertex->getInfo().getIndex();
+                    there_is_closest=true;
+                    break;
+                }
+
+                bool vertex_is_neighbour=false;
+                for (auto edge : previousVertex->getAdj()) {
+                    if (edge->getDest() == vertex) {
+                        vertex_is_neighbour=true;
+                        if (!vertex->isVisited()) {
+                            vertex->setVisited(true);
+                            minpath.push_back(vertex->getInfo().getIndex());
+                            min_distance += edge->getWeight();
+                            previousVertex = vertex;
+                        }
+                        break;
+                    }
+                }
+                if (!vertex_is_neighbour) {
+                    vertex->setVisited(true);
+                    minpath.push_back(vertex->getInfo().getIndex());
+                    min_distance+= Haversine::calculate_distance(previousVertex->getInfo().getCoordinates().first, previousVertex->getInfo().getCoordinates().second, vertex->getInfo().getCoordinates().first, vertex->getInfo().getCoordinates().second); // random stuff while we dont have the haversine stuff implemented
+                    previousVertex = vertex;
+                }
+
+            } else {
+                previousVertex = vertex;
+                minpath.push_back(vertex->getInfo().getIndex());
+                startingVertex= vertex;
+            }
+        }
+
+        if (there_is_closest) {
+            for (auto y : graph.getVertexSet()){
+                if (!y->isVisited()) {
+                    to_reset.push(y);
+                }
+            }
+            mst = prims(graph, important);
+            while (!to_reset.empty()) {
+                auto z = to_reset.top();
+                z->setVisited(false);
+                to_reset.pop();
+            }
+            there_is_closest=false;
+        }
+    }
+
+    for (auto edge: previousVertex->getAdj()) { //adding the distance of returning back to Node 0
+        if (edge->getDest()==startingVertex) {
+            min_distance+=edge->getWeight();
+        }
+    }
+
+    // Output the result
+    cout << "Optimal Path: " << endl;
+    for (int citeh : minpath) cout << citeh << " -> ";
+    cout << "0 \n";
+    cout << "Minimum Distance: " << min_distance << endl;
+
+    cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+}*/
 
 
 

@@ -12,5 +12,8 @@ add_executable(DA2G195 main.cpp
         include/ReadFunctions.h
         include/Include.h
         src/OperationFunctions.cpp
-        include/OperationFunctions.h)
+        include/OperationFunctions.h
+        src/Haversine.cpp
+        include/Haversine.h
+)
 

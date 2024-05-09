@@ -142,6 +142,7 @@ void Menu::case2() {
 }
 
 void Menu::case3() {
+    OperationFunctions::xApprox(graph);
 //to be done
 }
 

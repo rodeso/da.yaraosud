@@ -146,6 +146,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
                 }
             }
             if (!vertex_is_neighbour) {
+                if (vertex->getInfo().getCoordinates().first == 0.0 && vertex->getInfo().getCoordinates().second == 0.0) {break;}//Do not come, do not come
                 vertex->setVisited(true);
                 minpath.push_back(vertex->getInfo().getIndex());
                 min_distance+= Haversine::calculate_distance(previousVertex->getInfo().getCoordinates().first, previousVertex->getInfo().getCoordinates().second, vertex->getInfo().getCoordinates().first, vertex->getInfo().getCoordinates().second); // random stuff while we dont have the haversine stuff implemented
@@ -214,17 +215,7 @@ bool allVisited(Graph<Node> &graph) {
     }
     return flag;
 }
-
-
-
-
-void OperationFunctions::divideAndConquer() {
-
-}
-
-
-
-
+/*
 void OperationFunctions::xApprox(Graph<Node> &graph) {
     Timer timer;
     vector<int> minpath;
@@ -311,6 +302,7 @@ void OperationFunctions::xApprox(Graph<Node> &graph) {
     cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 }
 
+*/
 
 
 

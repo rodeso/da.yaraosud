@@ -14,6 +14,7 @@ class ReadFunctions {
     public:
         static Graph<Node> readToy(int i);
         static Graph<Node> readExtra(int i);
+        static Graph<Node> readReal(int i);
 };
 
 

@@ -60,7 +60,13 @@ void Menu::run() {
                     }
                     goto load;
                 case '3':
-                    //to be done
+                    cout << "Available Graphs: 1, 2 and 3 (ATTENTION: GRAPH 3 MAY LOAD SLOWLY)" << endl;
+                    cout << "Please enter the number of the desired Graph data set: ";
+                    getline(cin, csv_number);
+                    graph = ReadFunctions::readReal(stoi(csv_number));
+                    for (auto u : graph.getVertexSet()) {
+                        u->getInfo().print();
+                    }
                     goto load;
                 case '0':
                     cout << "Goodbye!" << endl;
@@ -142,7 +148,7 @@ void Menu::case2() {
 }
 
 void Menu::case3() {
-    OperationFunctions::xApprox(graph);
+    //OperationFunctions::xApprox(graph);
 //to be done
 }
 

@@ -67,7 +67,7 @@ void Menu::run() {
                     for (auto u : graph.getVertexSet()) {
                         u->getInfo().print();
                     }
-                    goto load;
+                    goto real;
                 case '0':
                     cout << "Goodbye!" << endl;
                     exit(0);
@@ -89,7 +89,6 @@ void Menu::run() {
         cout << "1 - Backtracking Algorithm." << endl;
         cout << "2 - Triangular Approximation Heuristic." << endl;
         cout << "3 - Alternative Heuristic." << endl;
-        cout << "4 - Real World TSP." << endl;
         cout << "9 - Credits." << endl;
         cout << "0 - Exit." << endl;
         cout << string(LINE_SIZE_, '-') << endl;
@@ -131,6 +130,47 @@ void Menu::run() {
                 break;
         }
     }
+    real:
+    while (true) {
+        string decision;
+        cout << string(LINE_SIZE_, '-') << endl;
+        cout << "Select Starting Point:" << endl;
+        cout << string(LINE_SIZE_, '-') << endl;
+        cout << "1 - Random." << endl;
+        cout << "2 - ID." << endl;
+        cout << "3 - Coordinates." << endl;
+        cout << "0 - Exit." << endl;
+        cout << string(LINE_SIZE_, '-') << endl;
+        cout << "Please select the task you wish to perform by inputting its number: ";
+        for (auto u : graph.getVertexSet()) {u->setVisited(false);}
+        getline(cin, decision);
+        cout << string(LINE_SIZE_, '-') << endl;
+        cout << endl;
+        if (decision.size() != 1) {
+            cout << "Invalid input. Please enter a number between 0 and 5: " << endl;
+            continue;
+        }
+        switch (decision[0]) {
+            case '1':
+                case5();
+                waitForInput();
+                break;
+            case '2':
+                case6();
+                waitForInput();
+                break;
+            case '3':
+                case7();
+                waitForInput();
+                break;
+            case '0':
+                cout << "Goodbye!" << endl;
+                exit(0);
+            default:
+                cout << "Invalid input. Please enter a number between 0 and 3: " << endl;
+                break;
+        }
+    }
 }
 
 
@@ -154,6 +194,31 @@ void Menu::case3() {
 
 void Menu::case4() {
 //to be done
+}
+
+void Menu::case5() {
+    Node a(Randomizer::randInt(graph), "N/A", {0.0,0.0});
+    Vertex<Node>* start = graph.findVertex(a)
+    OperationFunctions::doitidk(graph, start);
+}
+
+void Menu::case6() {
+    string id;
+    cout << "Please enter the ID of the desired starting point: ";
+    getline(cin, id);
+    Node a(stoi(id), "N/A", {0.0,0.0});
+    Vertex<Node>* start = graph.findVertex(a);
+    OperationFunctions::doitidk(graph, start);
+}
+
+void Menu::case7() {
+    string x, y;
+    cout << "Please enter the Latitude coordinate of the desired starting point: ";
+    getline(cin, x);
+    cout << "Please enter the Longitude coordinate of the desired starting point: ";
+    getline(cin, y);
+    Vertex<Node>* start = OperationFunctions::getVertexRealWorldCoordinates(graph, stod(x), stod(y));
+    OperationFunctions::doitidk(graph, start);
 }
 
 void Menu::case9() {

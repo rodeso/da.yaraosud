@@ -1,4 +1,5 @@
 #include "../include/OperationFunctions.h"
+#include "OperationFunctions.h"
 const int INF = INT_MAX;
 
 
@@ -305,7 +306,17 @@ void OperationFunctions::xApprox(Graph<Node> &graph) {
 */
 
 
+//------------Real World--------------------------------------------------------------------------------------------------------------------------------------------------
 
+
+Vertex<Node>* OperationFunctions::getVertexRealWorldCoordinates(Graph<Node> &graph, double lat, double lon) {
+    for (auto u : graph.getVertexSet()) {
+        if (u->getInfo().getCoordinates().first == lat && u->getInfo().getCoordinates().second == lon) {
+            return u;
+        }
+    }
+    return nullptr;
+}
 
 
 

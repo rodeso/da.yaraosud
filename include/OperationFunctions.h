@@ -21,6 +21,8 @@ public:
 
     static void tApprox(Graph<Node> &graph);
 
+    static Vertex<Node> *getVertexRealWorldCoordinates(Graph<Node> &graph, double lat, double lon);
+
     //static void xApprox(Graph<Node> &graph);
 
 };

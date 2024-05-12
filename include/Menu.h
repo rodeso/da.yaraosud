@@ -6,6 +6,7 @@
 #include "ReadFunctions.h"
 #include "OperationFunctions.h"
 #include "Timer.h"
+#include "Randomizer.h"
 
 /**
  * @brief Class that represents the system menus' interface and all of its stored data.
@@ -44,6 +45,19 @@ class Menu {
          * @brief Function to initialize the case 4 of the menu
          */
         void case4();
+        /**
+         * @brief Function to initialize the case 5 of the menu
+         */
+        void case5();
+        /**
+         * @brief Function to initialize the case 6 of the menu
+         */
+        void case6();
+        /**
+         * @brief Function to initialize the case 7 of the menu
+         */
+        void case7();
+
         /**
          * @brief Function to initialize the case 9 of the menu
          */

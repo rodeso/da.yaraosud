@@ -32,7 +32,7 @@
 #include <ctime>
 #include <cmath>
 #include <stack>
-
+#include <random>
 
 static int LINE_SIZE_ = 130;
 

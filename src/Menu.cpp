@@ -188,8 +188,9 @@ void Menu::case2() {
 }
 
 void Menu::case3() {
-    //OperationFunctions::xApprox(graph);
-//to be done
+    Node a(0, "N/A", {0.0,0.0});
+    OperationFunctions::christofides(graph, graph.findVertex(a), false);
+    //to be done
 }
 
 void Menu::case4() {
@@ -198,8 +199,8 @@ void Menu::case4() {
 
 void Menu::case5() {
     Node a(Randomizer::randInt(graph), "N/A", {0.0,0.0});
-    Vertex<Node>* start = graph.findVertex(a)
-    OperationFunctions::doitidk(graph, start);
+    Vertex<Node>* start = graph.findVertex(a);
+    OperationFunctions::christofides(graph, start, true);
 }
 
 void Menu::case6() {
@@ -208,7 +209,7 @@ void Menu::case6() {
     getline(cin, id);
     Node a(stoi(id), "N/A", {0.0,0.0});
     Vertex<Node>* start = graph.findVertex(a);
-    OperationFunctions::doitidk(graph, start);
+    OperationFunctions::christofides(graph, start, true);
 }
 
 void Menu::case7() {
@@ -218,7 +219,7 @@ void Menu::case7() {
     cout << "Please enter the Longitude coordinate of the desired starting point: ";
     getline(cin, y);
     Vertex<Node>* start = OperationFunctions::getVertexRealWorldCoordinates(graph, stod(x), stod(y));
-    OperationFunctions::doitidk(graph, start);
+    OperationFunctions::christofides(graph, start, true);
 }
 
 void Menu::case9() {

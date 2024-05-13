@@ -23,6 +23,8 @@ public:
 
     static Vertex<Node> *getVertexRealWorldCoordinates(Graph<Node> &graph, double lat, double lon);
 
+    static void christofides(Graph<Node> &graph, Vertex<Node> *start, bool real);
+
     //static void xApprox(Graph<Node> &graph);
 
 };

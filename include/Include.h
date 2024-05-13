@@ -33,6 +33,8 @@
 #include <cmath>
 #include <stack>
 #include <random>
+#include <list>
+#include <unordered_map>
 
 static int LINE_SIZE_ = 130;
 

@@ -25,7 +25,7 @@ class Node {
         ~Node() {}
 
         //Getters
-        int getIndex() {return index_;}
+        int getIndex() const {return index_;}
         string getLabel() {return label_;}
         pair<double,double> getCoordinates() {return coordinates_;}
 
@@ -64,7 +64,21 @@ class Node {
                 return "";
             }
         }
+
         
+};
+struct NodeHash {
+    std::size_t operator()(const Node& node) const {
+        // Compute hash value for index_ member
+        return std::hash<int>()(node.getIndex());
+    }
+};
+
+struct NodeEqual {
+    bool operator()(const Node& lhs, const Node& rhs) const {
+        // Compare index_ members for equality
+        return lhs.getIndex() == rhs.getIndex();
+    }
 };
 
 

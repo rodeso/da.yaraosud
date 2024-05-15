@@ -305,39 +305,51 @@ Graph<Node> combineGraphs(Graph<Node> &graph, vector<Vertex<Node>*> &MST, Graph<
     return combinedGraph;
 }
 
-void findEulerianCircuit(Graph<Node>& combinedGraph, Vertex<Node>* start, std::vector<Vertex<Node>*>& eulerianCircuit) {
-    unordered_map<Node, list<Node>, NodeHash, NodeEqual> adjList;
-    
-    // Convert combinedGraph to an adjacency list representation
-    for (auto vertex : combinedGraph.getVertexSet()) {
-        for (auto edge : vertex->getAdj()) {
-            adjList[vertex->getInfo()].push_back(edge->getDest()->getInfo());
-            adjList[edge->getDest()->getInfo()].push_back(vertex->getInfo()); // For undirected graph
-        }
+vector<int> findEulerianCircuit(Graph<Node>& combinedGraph, Vertex<Node>* start) {
+    vector<int> euler;
+    if (!start) {
+        return euler; // Return empty if start is null
     }
 
-    std::stack<Vertex<Node>*> stack;
-    std::vector<Vertex<Node>*> path;
-    stack.push(start);
-
-    while (!stack.empty()) {
-        Vertex<Node>* top = stack.top();
-        if (adjList[top->getInfo()].empty()) { // If no neighbors
-            path.push_back(top);
-            stack.pop();
+    stack<Vertex<Node>*> havana;
+    havana.push(start);
+    while (!havana.empty()) {
+        Vertex<Node>* v = havana.top();
+        cout << v->getInfo().getIndex() << endl;
+        auto edges = v->getAdj(); // Get a reference to avoid copying
+        if (edges.empty()) {
+            euler.push_back(v->getInfo().getIndex());
+            havana.pop();
         } else {
-            // Get and remove the first neighbor
-            Node neighbor = *adjList[top->getInfo()].begin();
-            adjList[top->getInfo()].pop_front();
-            // Also remove the reverse edge from neighbor to top
-            adjList[neighbor].remove(top->getInfo());
-            // Push the neighbor onto the stack
-            stack.push(combinedGraph.findVertex(neighbor));
+            auto edge = edges.front();
+            auto dest = edge->getDest();
+            // Assuming removeEdge correctly handles edge removal in both directions if needed
+            v->removeEdge(dest->getInfo());
+            dest->removeEdge(v->getInfo()); // If the graph is undirected
+            havana.push(dest);
         }
     }
 
-    // Reverse path to get the correct order
-    eulerianCircuit.assign(path.rbegin(), path.rend());
+    std::reverse(euler.begin(), euler.end());
+    return euler;
+}
+
+vector<int> findHamiltonCircuit(vector<int>& eulerCircuit) {
+    std::vector<int> hamilton;
+    std::unordered_set<int> isVisited;
+
+    for (auto vert : eulerCircuit) {
+        if (isVisited.count(vert) == 0 || hamilton.empty()) {
+            hamilton.push_back(vert);
+            isVisited.insert(vert);
+        }
+    }
+
+    if (!hamilton.empty()) {
+        hamilton.push_back(hamilton[0]);
+    }
+
+    return hamilton;
 }
 
 void OperationFunctions::christofides(Graph<Node> &graph, Vertex<Node> *start, bool real) {
@@ -352,32 +364,21 @@ void OperationFunctions::christofides(Graph<Node> &graph, Vertex<Node> *start, b
 
     Graph<Node> combinedGraph = combineGraphs(graph, MST, MWPM);
 
-    vector<Vertex<Node>*> eulerianCircuit;
-    findEulerianCircuit(combinedGraph, start, eulerianCircuit);
+    vector<int> eul = findEulerianCircuit(combinedGraph, start);
     // Convert Eulerian circuit to Hamiltonian circuit
-    vector<Vertex<Node>*> hamiltonianCircuit;
-    for (Vertex<Node>* vertex : eulerianCircuit) {
-        if (!vertex->isVisited()) {
-            hamiltonianCircuit.push_back(vertex);
-            vertex->setVisited(true);
-        }
-    }
+    vector<int> hamiltonianCircuit = findHamiltonCircuit(eul);
 
-    // Reset visited status for future use
-    for (Vertex<Node>* vertex : hamiltonianCircuit) {
-        vertex->setVisited(false);
-    }
 
     // Calculate minimum path and distance
     minpath.clear();
     min_distance = 0;
     Vertex<Node>* previous = nullptr;
-    for (Vertex<Node>* vertex : hamiltonianCircuit) {
-        minpath.push_back(vertex->getInfo().getIndex());
+    for (auto vertex : hamiltonianCircuit) {
+        minpath.push_back(vertex);
         if (previous) {
-            min_distance += distance(graph, previous->getInfo(), vertex->getInfo());  // Using your distance function
+            min_distance += distance(graph, previous->getInfo(), graph.findVertex(Node(vertex, "N/A", {0.0,0.0}))->getInfo());  // Using your distance function
         }
-        previous = vertex;
+        previous = graph.findVertex(Node(vertex,"N/A",{0.0,0.0}));
     }
     // Output the result
     cout << "Optimal Path: " << endl;

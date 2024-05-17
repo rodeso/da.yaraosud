@@ -19,10 +19,6 @@ class Menu {
         * @brief Graph structure.
         */
         Graph<Node> graph;
-        /**
-        * @brief Dictionary to help relate the names of the cities with its respective code.
-        */
-        unordered_map<string,string> cityDict;
 
     public:
         /**

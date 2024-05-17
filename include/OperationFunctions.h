@@ -18,6 +18,8 @@ public:
     static void bound_2(Graph<Node> &graph);
 
     static vector<Vertex<Node> *> prims(Graph<Node> &graph, int i);
+    static Graph<Node> primsGraph(Graph<Node> &graph, int i);
+
 
     static void tApprox(Graph<Node> &graph);
 

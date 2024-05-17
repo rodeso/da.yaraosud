@@ -116,6 +116,50 @@ vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph, int c) {
 }
 
 
+Graph<Node> OperationFunctions::primsGraph(Graph<Node> &graph, int c) {
+    Timer timer;
+    Node i(c,"dummy",{0.0,0.0});
+    Vertex<Node>* startVertex = graph.findVertex(i);
+    priority_queue<pair<double, Vertex<Node>*>, vector<pair<double, Vertex<Node>*>>, greater<>> pq;
+
+    Vertex<Node>* previous;
+    Graph<Node> MSTGraph;
+
+    timer.start();
+
+    MSTGraph.addVertex(startVertex->getInfo());
+    previous=startVertex;
+
+    startVertex->setVisited(true);
+    for (auto edge : startVertex->getAdj()) {
+        pq.push({edge->getWeight(), edge->getDest()});
+    }
+
+    while (!pq.empty()) {
+        auto [weight, vertex] = pq.top();
+        pq.pop();
+        if (!vertex->isVisited()) {
+            vertex->setVisited(true);
+            MSTGraph.addVertex(vertex->getInfo());
+            MSTGraph.addEdge(previous->getInfo(), vertex->getInfo(), distance(graph,previous->getInfo(),vertex->getInfo()));
+            MSTGraph.addEdge(vertex->getInfo(), previous->getInfo(), distance(graph,previous->getInfo(),vertex->getInfo()));
+
+            // Add adjacent vertices to the priority queue
+            for (auto edge : vertex->getAdj()) {
+                if (!edge->getDest()->isVisited()) {
+                    pq.push({edge->getWeight(), edge->getDest()});
+                }
+            }
+
+            previous=vertex;
+
+        }
+    }
+    cout << "Calculation of MST time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    return MSTGraph;
+}
+
+
 void OperationFunctions::tApprox(Graph<Node> &graph) {
     Timer timer;
     vector<int> minpath;

@@ -189,7 +189,13 @@ void Menu::case2() {
 
 void Menu::case3() {
     Node a(0, "N/A", {0.0,0.0});
-    OperationFunctions::christofides(graph, graph.findVertex(a), false);
+    //OperationFunctions::christofides(graph, graph.findVertex(a), false);
+    Graph<Node> what = OperationFunctions::primsGraph(graph,0);
+    for(auto i:what.getVertexSet()) {
+        for (auto j:i->getAdj()) {
+            cout << i->getInfo().getIndex() << " -> " << j->getDest()->getInfo().getIndex() << endl;
+        }
+    }
     //to be done
 }
 

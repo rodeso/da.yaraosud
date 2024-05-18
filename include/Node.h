@@ -67,14 +67,39 @@ class Node {
 
         
 };
+/**
+ * @brief Hash function object for Node class.
+ * 
+ * This struct provides a hash function object for the Node class. It computes the hash value
+ * based on the index_ member of the Node object.
+ */
 struct NodeHash {
+    /**
+     * @brief Computes the hash value for a Node object.
+     * 
+     * This function computes the hash value for a given Node object by using the std::hash<int>
+     * function on the index_ member of the Node object.
+     * 
+     * @param node The Node object for which to compute the hash value.
+     * @return The computed hash value.
+     */
     std::size_t operator()(const Node& node) const {
         // Compute hash value for index_ member
         return std::hash<int>()(node.getIndex());
     }
 };
 
+/**
+ * @struct NodeEqual
+ * @brief Functor for comparing two Node objects for equality based on their index_ members.
+ */
 struct NodeEqual {
+    /**
+     * @brief Overloaded function call operator to compare two Node objects for equality.
+     * @param lhs The left-hand side Node object.
+     * @param rhs The right-hand side Node object.
+     * @return True if the index_ members of lhs and rhs are equal, false otherwise.
+     */
     bool operator()(const Node& lhs, const Node& rhs) const {
         // Compare index_ members for equality
         return lhs.getIndex() == rhs.getIndex();

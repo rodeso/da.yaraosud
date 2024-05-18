@@ -155,6 +155,9 @@ Graph<Node> OperationFunctions::primsGraph(Graph<Node> &graph, int c) {
 
         }
     }
+    double ender = distance(graph, previous->getInfo(), startVertex->getInfo());
+    MSTGraph.addEdge(previous->getInfo(),startVertex->getInfo(),ender);
+
     cout << "Calculation of MST time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
     return MSTGraph;
 }
@@ -314,9 +317,9 @@ Graph<Node> findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexe
     }
     return mwpm;
 }
-Graph<Node> combineGraphs(Graph<Node> &graph, vector<Vertex<Node>*> &MST, Graph<Node> &MWPM) {
+Graph<Node> combineGraphs(Graph<Node> &graph, Graph<Node> &MSTgraph, Graph<Node> &MWPM) {
     // Create a new graph that includes all vertices from the original graph
-    Graph<Node> combinedGraph = graph;
+    Graph<Node> combinedGraph = graph.getCopy();
 
     // Remove all edges from the combinedGraph
     for (auto vertex : combinedGraph.getVertexSet()) {
@@ -326,7 +329,12 @@ Graph<Node> combineGraphs(Graph<Node> &graph, vector<Vertex<Node>*> &MST, Graph<
     }
 
     // Add the edges from the MST to the combinedGraph
-    Vertex<Node>* previousVertex = nullptr;
+    for (auto vertex : MSTgraph.getVertexSet()) {
+        for (auto edge : vertex->getAdj()) {
+            combinedGraph.addEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo(), edge->getWeight());
+        }
+    }
+    /*Vertex<Node>* previousVertex = nullptr;
     for (auto vertex : MST) {
         if (previousVertex != nullptr) {
             for (auto edge : previousVertex->getAdj()) {
@@ -337,7 +345,7 @@ Graph<Node> combineGraphs(Graph<Node> &graph, vector<Vertex<Node>*> &MST, Graph<
             }
         }
         previousVertex = vertex;
-    }
+    }*/
 
     // Add the edges from the MWPM to the combinedGraph
     for (auto vertex : MWPM.getVertexSet()) {
@@ -349,7 +357,7 @@ Graph<Node> combineGraphs(Graph<Node> &graph, vector<Vertex<Node>*> &MST, Graph<
     return combinedGraph;
 }
 
-vector<int> findEulerianCircuit(Graph<Node>& combinedGraph, Vertex<Node>* start) {
+vector<int> findEulerianCircuit(Vertex<Node>* start) {
     vector<int> euler;
     if (!start) {
         return euler; // Return empty if start is null
@@ -360,7 +368,7 @@ vector<int> findEulerianCircuit(Graph<Node>& combinedGraph, Vertex<Node>* start)
     while (!havana.empty()) {
         Vertex<Node>* v = havana.top();
         cout << v->getInfo().getIndex() << endl;
-        auto edges = v->getAdj(); // Get a reference to avoid copying
+        auto edges = v->getAdj();
         if (edges.empty()) {
             euler.push_back(v->getInfo().getIndex());
             havana.pop();
@@ -388,53 +396,56 @@ vector<int> findHamiltonCircuit(vector<int>& eulerCircuit) {
             isVisited.insert(vert);
         }
     }
-
-    if (!hamilton.empty()) {
-        hamilton.push_back(hamilton[0]);
-    }
-
+    hamilton.push_back(0);
     return hamilton;
 }
 
-void OperationFunctions::christofides(Graph<Node> &graph, Vertex<Node> *start, bool real) {
+void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) {
     Timer timer;
     vector<int> minpath;
     double min_distance = 0;
     timer.start();
-    vector<Vertex<Node>*> MST = prims(graph, start->getInfo().getIndex());
+    Graph<Node> MST = primsGraph(graph, start);
     vector<Vertex<Node>*> oddVertexes = getOddVertexes(graph);
     
     Graph<Node> MWPM = findMWPM(graph, oddVertexes, real);
 
     Graph<Node> combinedGraph = combineGraphs(graph, MST, MWPM);
 
-    vector<int> eul = findEulerianCircuit(combinedGraph, start);
+    Node startNode(start, "N/A", {0.0,0.0});
+    Vertex<Node>* starter = combinedGraph.findVertex(startNode);
+    vector<int> eul = findEulerianCircuit(starter);
     // Convert Eulerian circuit to Hamiltonian circuit
     vector<int> hamiltonianCircuit = findHamiltonCircuit(eul);
-
 
     // Calculate minimum path and distance
     minpath.clear();
     min_distance = 0;
     Vertex<Node>* previous = nullptr;
+
+    cout << "Hamiltonian Ints\n";
+    for (auto vertex : hamiltonianCircuit) {
+        auto currentV = graph.findVertex(Node(vertex, "N/A", {0.0,0.0}));
+        cout << "Vertex: "<< currentV->getInfo().getIndex() << endl;
+        for (auto u : currentV->getAdj()) {
+            cout << "Edge to: "<< u->getDest()->getInfo().getIndex() << ' ' <<u->getWeight() << endl;
+        }
+    }
+
     for (auto vertex : hamiltonianCircuit) {
         minpath.push_back(vertex);
-        if (previous) {
-            min_distance += distance(graph, previous->getInfo(), graph.findVertex(Node(vertex, "N/A", {0.0,0.0}))->getInfo());  // Using your distance function
+        if (previous != nullptr) {
+            min_distance += distance(graph, previous->getInfo(), combinedGraph.findVertex(Node(vertex, "N/A", {0.0,0.0}))->getInfo());  // Using your distance function
         }
-        previous = graph.findVertex(Node(vertex,"N/A",{0.0,0.0}));
+        previous = combinedGraph.findVertex(Node(vertex,"N/A",{0.0,0.0}));
     }
     // Output the result
     cout << "Optimal Path: " << endl;
     for (int citeh : minpath) cout << citeh << " -> ";
-    cout << "0 \n";
+    cout << "End of Journey \n";
     cout << "Minimum Distance: " << min_distance << endl;
 
     cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
-
-    
-
-
 
 
 }

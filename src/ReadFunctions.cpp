@@ -115,6 +115,8 @@ Graph<Node> ReadFunctions::readExtra(int i) {
             Node a(stoi(id1),"N/A", {0.0,0.0});
             Node z(stoi(id2), "N/A", {0.0,0.0});
             g.addEdge(g.findVertex(a)->getInfo(), g.findVertex(z)->getInfo(), stod(distance));
+
+            g.addEdge(g.findVertex(z)->getInfo(), g.findVertex(a)->getInfo(), stod(distance));
         }
     }
 

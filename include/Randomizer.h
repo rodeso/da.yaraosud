@@ -4,8 +4,17 @@
 #include "Include.h"
 #include "Node.h"
 #include "Graph.h"
+/**
+ * @class Randomizer
+ * @brief A utility class for generating random numbers.
+ */
 class Randomizer {
     public:
+        /**
+         * Generates a random integer within the range [0, size of the vertex set of the given graph).
+         * @param graph The graph object from which to generate the random integer.
+         * @return A random integer within the specified range.
+         */
         static int randInt(Graph<Node> &graph) {
             random_device rd; // obtain a random number from hardware
             mt19937 eng(rd()); // seed the generator

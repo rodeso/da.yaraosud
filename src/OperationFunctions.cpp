@@ -7,7 +7,6 @@ const int INF = INT_MAX;
 
 
 
-// Function to calculate the distance between two cities
 double OperationFunctions::distance(Graph<Node>& graph, Node src, Node dest) {
      for (auto u : graph.findVertex(src)->getAdj()){
          if (u->getDest()->getInfo().getIndex() == dest.getIndex()) {
@@ -17,17 +16,15 @@ double OperationFunctions::distance(Graph<Node>& graph, Node src, Node dest) {
      return INF;
 }
 
-// Backtracking function to find the minimum distance
+
 void OperationFunctions::backtracking(Graph<Node>& graph, vector<int>& path, vector<int>& minpath, Node current_city, double& min_distance, double& total_distance) {
-    // If all cities have been visited
     if (path.size() == graph.getVertexSet().size()) {
-        total_distance += distance(graph, current_city, Node(0,"N/A",{0.0,0.0})); // Return to the starting city
-        min_distance = min(min_distance, total_distance); // Update minimum distance
-        if (min_distance == total_distance) minpath = path; // If path is the best, save it
-        total_distance -= distance(graph, current_city, Node(0,"N/A",{0.0,0.0})); // Backtrack
+        total_distance += distance(graph, current_city, Node(0,"N/A",{0.0,0.0})); 
+        min_distance = min(min_distance, total_distance); 
+        if (min_distance == total_distance) minpath = path;
+        total_distance -= distance(graph, current_city, Node(0,"N/A",{0.0,0.0})); 
         return;
     }
-    // Loop through all unvisited cities
     for (Edge<Node>* edge : graph.findVertex(current_city)->getAdj()) {
         Vertex<Node>* currentNeighbour = edge->getDest();
         if (!currentNeighbour->isVisited()) {
@@ -47,7 +44,7 @@ void OperationFunctions::backtracking(Graph<Node>& graph, vector<int>& path, vec
     }
 }
 
-// Main function to solve TSP using backtracking
+
 void OperationFunctions::bound_2(Graph<Node>& graph) {
     Timer timer;
     vector<int> path;
@@ -57,15 +54,12 @@ void OperationFunctions::bound_2(Graph<Node>& graph) {
 
     timer.start();
 
-    // Start from the first city
     Node i = Node(0,"N/A",{0.0,0.0});
     path.push_back(i.getIndex());
     graph.findVertex(i)->setVisited(true);
 
-    // Call the backtracking function
     backtracking(graph, path, minpath, i, min_distance, total_distance);
 
-    // Output the result
     cout << "Optimal Path: " << endl;
     for (int citeh : minpath) cout << citeh << " -> ";
     cout << "0 \n";
@@ -102,7 +96,6 @@ vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph, int c) {
             vertex->setVisited(true);
             mst.push_back(vertex);
 
-            // Add adjacent vertices to the priority queue
             for (auto edge : vertex->getAdj()) {
                 if (!edge->getDest()->isVisited()) {
                     pq.push({edge->getWeight(), edge->getDest()});
@@ -143,7 +136,6 @@ Graph<Node> OperationFunctions::primsGraph(Graph<Node> &graph, int c) {
             MSTGraph.addEdge(previous->getInfo(), vertex->getInfo(), distance(graph,previous->getInfo(),vertex->getInfo()));
             MSTGraph.addEdge(vertex->getInfo(), previous->getInfo(), distance(graph,previous->getInfo(),vertex->getInfo()));
 
-            // Add adjacent vertices to the priority queue
             for (auto edge : vertex->getAdj()) {
                 if (!edge->getDest()->isVisited()) {
                     pq.push({edge->getWeight(), edge->getDest()});
@@ -206,7 +198,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
         }
     }
 
-    for (auto edge: previousVertex->getAdj()) { //adding the distance of returning back to Node 0
+    for (auto edge: previousVertex->getAdj()) {
         if (edge->getDest()==startingVertex) {
             min_distance+=edge->getWeight();
         }
@@ -217,7 +209,6 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
     for (int citeh : minpath) cout << citeh << " -> ";
     cout << "0 \n";
     cout << "Minimum Distance: " << min_distance << endl;
-
     cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
 }
@@ -228,7 +219,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
 
 
 
-Vertex<Node>* closestVertex(Vertex<Node>* current, Graph<Node> &graph, bool real) {
+Vertex<Node>* OperationFunctions::closestVertex(Vertex<Node>* current, Graph<Node> &graph, bool real) {
     double current_distance = INF;
     Vertex<Node>* closest_node = nullptr;
     if (current->getInfo().getCoordinates().first == 0.0 && current->getInfo().getCoordinates().second == 0.0) {
@@ -236,7 +227,6 @@ Vertex<Node>* closestVertex(Vertex<Node>* current, Graph<Node> &graph, bool real
             if (e->getWeight() < current_distance) {
                 current_distance = e->getWeight();
                 closest_node = e->getDest();
-
             }
         }
     }
@@ -255,7 +245,7 @@ Vertex<Node>* closestVertex(Vertex<Node>* current, Graph<Node> &graph, bool real
 }
 
 
-bool allVisited(Graph<Node> &graph) {
+bool OperationFunctions::allVisited(Graph<Node> &graph) {
     bool flag = false;
     int i = 0;
     for (auto u : graph.getVertexSet()) {
@@ -266,7 +256,7 @@ bool allVisited(Graph<Node> &graph) {
 }
 
 
-vector<Vertex<Node>*> getOddVertexes(Graph<Node> &graph) {
+vector<Vertex<Node>*> OperationFunctions::getOddVertexes(Graph<Node> &graph) {
     vector<Vertex<Node>*> oddVertexes;
     for (auto currentVertex : graph.getVertexSet()) {
         if (currentVertex->getAdj().size() % 2 != 0) {
@@ -277,7 +267,7 @@ vector<Vertex<Node>*> getOddVertexes(Graph<Node> &graph) {
 }
 
 
-Graph<Node> findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexes, bool real) {
+Graph<Node> OperationFunctions::findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexes, bool real) {
     Timer timer;
     Graph<Node> mwpm;
     timer.start();
@@ -298,20 +288,18 @@ Graph<Node> findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexe
                         if (e->getDest() == closest) {
                             distanceMinReal = e->getWeight();
                             ExistsInReal = true;
-                            break; // Found the edge, no need to continue searching
+                            break;
                         }
                     }
                     if (ExistsInReal) {
                         distance = distanceMinReal;
                     } else {
-                        continue; // If no real edge exists and it's required, skip this pair
+                        continue;
                     }
                 } else {
                     distance = Haversine::calculate_distance(u->getInfo().getCoordinates().first, u->getInfo().getCoordinates().second, closest->getInfo().getCoordinates().first, closest->getInfo().getCoordinates().second);
                 }
-                // Add edge from u to closest
                 mwpm.addEdge(u->getInfo(), closest->getInfo(), distance);
-                // Add edge from closest back to u to ensure bidirectionality
                 mwpm.addEdge(closest->getInfo(), u->getInfo(), distance);
                 u->setVisited(true);
                 closest->setVisited(true);
@@ -324,39 +312,22 @@ Graph<Node> findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexe
 }
 
 
-Graph<Node> combineGraphs(Graph<Node> &graph, Graph<Node> &MSTgraph, Graph<Node> &MWPM) {
+Graph<Node> OperationFunctions::combineGraphs(Graph<Node> &graph, Graph<Node> &MSTgraph, Graph<Node> &MWPM) {
     Timer timer;
-    // Create a new graph that includes all vertices from the original graph
     Graph<Node> combinedGraph = graph.getCopy();
     timer.start();
 
-    // Remove all edges from the combinedGraph
     for (auto vertex : combinedGraph.getVertexSet()) {
         for (auto edge : vertex->getAdj()) {
             combinedGraph.removeEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo());
         }
     }
 
-    // Add the edges from the MST to the combinedGraph
     for (auto vertex : MSTgraph.getVertexSet()) {
         for (auto edge : vertex->getAdj()) {
             combinedGraph.addEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo(), edge->getWeight());
         }
     }
-    /*Vertex<Node>* previousVertex = nullptr;
-    for (auto vertex : MST) {
-        if (previousVertex != nullptr) {
-            for (auto edge : previousVertex->getAdj()) {
-                if (edge->getDest() == vertex) {
-                    combinedGraph.addEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo(), edge->getWeight());
-                    break;
-                }
-            }
-        }
-        previousVertex = vertex;
-    }*/
-
-    // Add the edges from the MWPM to the combinedGraph
     for (auto vertex : MWPM.getVertexSet()) {
         for (auto edge : vertex->getAdj()) {
             combinedGraph.addEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo(), edge->getWeight());
@@ -368,11 +339,11 @@ Graph<Node> combineGraphs(Graph<Node> &graph, Graph<Node> &MSTgraph, Graph<Node>
 }
 
 
-vector<int> findEulerianCircuit(Vertex<Node>* start) {
+vector<int> OperationFunctions::findEulerianCircuit(Vertex<Node>* start) {
     Timer timer;
     vector<int> euler;
     if (!start) {
-        return euler; // Return empty if start is null
+        return euler; 
     }
     timer.start();
     stack<Vertex<Node>*> havana;
@@ -386,9 +357,8 @@ vector<int> findEulerianCircuit(Vertex<Node>* start) {
         } else {
             auto edge = edges.front();
             auto dest = edge->getDest();
-            // Assuming removeEdge correctly handles edge removal in both directions if needed
             v->removeEdge(dest->getInfo());
-            dest->removeEdge(v->getInfo()); // If the graph is undirected
+            dest->removeEdge(v->getInfo());
             havana.push(dest);
         }
     }
@@ -400,7 +370,7 @@ vector<int> findEulerianCircuit(Vertex<Node>* start) {
 }
 
 
-vector<int> findHamiltonCircuit(vector<int>& eulerCircuit) {
+vector<int> OperationFunctions::findHamiltonCircuit(vector<int>& eulerCircuit) {
     Timer timer;
     std::vector<int> hamilton;
     std::unordered_set<int> isVisited;
@@ -433,10 +403,8 @@ void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) 
     Node startNode(start, "N/A", {0.0,0.0});
     Vertex<Node>* starter = combinedGraph.findVertex(startNode);
     vector<int> eul = findEulerianCircuit(starter);
-    // Convert Eulerian circuit to Hamiltonian circuit
     vector<int> hamiltonianCircuit = findHamiltonCircuit(eul);
 
-    // Calculate minimum path and distance
     minpath.clear();
     min_distance = 0;
     Vertex<Node>* previous = nullptr;
@@ -445,7 +413,7 @@ void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) 
     for (auto vertex : hamiltonianCircuit) {
         minpath.push_back(vertex);
         if (previous != nullptr) {
-            min_distance += distance(graph, previous->getInfo(), combinedGraph.findVertex(Node(vertex, "N/A", {0.0,0.0}))->getInfo());  // Using your distance function
+            min_distance += distance(graph, previous->getInfo(), combinedGraph.findVertex(Node(vertex, "N/A", {0.0,0.0}))->getInfo());  
         }
         previous = combinedGraph.findVertex(Node(vertex,"N/A",{0.0,0.0}));
     }

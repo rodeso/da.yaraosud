@@ -1,10 +1,5 @@
 #include "../include/ReadFunctions.h"
 
-/**
- * @brief Function that reads all the Reservoirs information in the selected data folder, allowing for the creation of the nodes of its type, and the population of the graph.
- * @details Complexity
- */
-
 Graph<Node> ReadFunctions::readToy(int i) {
     cout << string(LINE_SIZE_, '-') << endl;
     cout << "Loading data contents..." << endl;
@@ -70,6 +65,8 @@ Graph<Node> ReadFunctions::readToy(int i) {
 
     return g;
 }
+
+
 Graph<Node> ReadFunctions::readExtra(int i) {
     cout << string(LINE_SIZE_, '-') << endl;
     cout << "Loading data contents..." << endl;
@@ -122,6 +119,7 @@ Graph<Node> ReadFunctions::readExtra(int i) {
 
     return g;
 }
+
 
 Graph<Node> ReadFunctions::readReal(int i) {
     cout << string(LINE_SIZE_, '-') << endl;

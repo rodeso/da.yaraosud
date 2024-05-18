@@ -1,17 +1,12 @@
 #include "../include/Menu.h"
 void waitForInput() {
     string input;
-    getline(std::cin, input); // Wait for user to press Enter
+    getline(std::cin, input); 
 }
-/** -------------------------------------------------------------------------------------------------------------------------
- * @brief Function that runs the first menu of the app (selection of the source of the data to be used), and later the main menu (with all the possible operations).
- * */
+
 void Menu::run() {
-    // Graph
     graph = Graph<Node>();
 
-
-    // Load Graph
     while (true) {
         string decision;
         string csv_number;
@@ -83,7 +78,6 @@ void Menu::run() {
 
         break;
     }
-    //Real Menu
     while (true) {
         string decision;
         cout << string(LINE_SIZE_, '-') << endl;
@@ -178,30 +172,28 @@ void Menu::run() {
 
 
 void Menu::case1() {
-
     OperationFunctions::bound_2(graph);
-
-
 }
+
 
 void Menu::case2() {
-
     OperationFunctions::tApprox(graph);
-//to be done
 }
+
 
 void Menu::case3() {
     OperationFunctions::christofides(graph, 0, false);
-    //to be done
 }
 
+
 void Menu::case4() {
-//to be done
 }
+
 
 void Menu::case5() {
     OperationFunctions::christofides(graph, Randomizer::randInt(graph), true);
 }
+
 
 void Menu::case6() {
     string id;
@@ -209,6 +201,7 @@ void Menu::case6() {
     getline(cin, id);
     OperationFunctions::christofides(graph, stoi(id), true);
 }
+
 
 void Menu::case7() {
     string x, y;
@@ -220,6 +213,7 @@ void Menu::case7() {
     OperationFunctions::christofides(graph, start->getInfo().getIndex(), true);
 }
 
+
 void Menu::case9() {
     cout << "This program was created by:" << endl;
     cout << string(2*(LINE_SIZE_/5), ' ');
@@ -230,5 +224,3 @@ void Menu::case9() {
     cout << "Rodrigo Dias Ferreira Loureiro de Sousa (up202205751@up.pt)" << endl;
     cout << "Date: May 2024" << endl;
 }
-
-

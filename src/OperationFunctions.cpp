@@ -65,7 +65,7 @@ void OperationFunctions::bound_2(Graph<Node>& graph) {
     cout << "0 \n";
     cout << "Minimum Distance: " << min_distance << endl;
 
-    cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 }
 
 
@@ -103,7 +103,7 @@ vector<Vertex<Node>*> OperationFunctions::prims(Graph<Node> &graph, int c) {
             }
         }
     }
-    cout << "Calculation of MST time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation of MST time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
     return mst;
 }
 
@@ -149,7 +149,7 @@ Graph<Node> OperationFunctions::primsGraph(Graph<Node> &graph, int c) {
     double ender = distance(graph, previous->getInfo(), startVertex->getInfo());
     MSTGraph.addEdge(previous->getInfo(),startVertex->getInfo(),ender);
 
-    cout << "Calculation of MST time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation of MST time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
     return MSTGraph;
 }
 
@@ -209,7 +209,7 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
     for (int citeh : minpath) cout << citeh << " -> ";
     cout << "0 \n";
     cout << "Minimum Distance: " << min_distance << endl;
-    cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
 }
 
@@ -306,7 +306,7 @@ Graph<Node> OperationFunctions::findMWPM(Graph<Node> &graph, const vector<Vertex
             }
         }
     }
-    cout << "Calculation of MWPM time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation of MWPM time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
     return mwpm;
 }
@@ -333,7 +333,7 @@ Graph<Node> OperationFunctions::combineGraphs(Graph<Node> &graph, Graph<Node> &M
             combinedGraph.addEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo(), edge->getWeight());
         }
     }
-    cout << "Calculation of CombinedGraph time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation of CombinedGraph time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
     return combinedGraph;
 }
@@ -364,7 +364,7 @@ vector<int> OperationFunctions::findEulerianCircuit(Vertex<Node>* start) {
     }
 
     std::reverse(euler.begin(), euler.end());
-    cout << "Calculation of EulerianCircuit time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation of EulerianCircuit time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
     return euler;
 }
@@ -382,7 +382,7 @@ vector<int> OperationFunctions::findHamiltonCircuit(vector<int>& eulerCircuit) {
         }
     }
     hamilton.push_back(0);
-    cout << "Calculation of HamiltonCircuit time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation of HamiltonCircuit time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
     return hamilton;
 }
@@ -423,7 +423,7 @@ void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) 
     cout << "End of Journey \n";
     cout << "Minimum Distance: " << min_distance << endl;
 
-    cout << "Calculation time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+    cout << "Calculation time: " << timer.elapsedMili()<< " ticks (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
 
 }

@@ -9,7 +9,6 @@ const int INF = INT_MAX;
 
 // Function to calculate the distance between two cities
 double OperationFunctions::distance(Graph<Node>& graph, Node src, Node dest) {
-    if(graph.findVertex(src)->getAdj().empty()) cout << src.getIndex() << "'s Adj is empty." << endl;
      for (auto u : graph.findVertex(src)->getAdj()){
          if (u->getDest()->getInfo().getIndex() == dest.getIndex()) {
              return u->getWeight();
@@ -175,7 +174,6 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
     for (auto u : graph.getVertexSet()) {u->setVisited(false);};
 
 
-    //This might work?? Or at least its close
     for (auto vertex : mst) {
         if (previousVertex != nullptr) {
 
@@ -225,7 +223,8 @@ void OperationFunctions::tApprox(Graph<Node> &graph) {
 }
 
 
-//------------Alternative Heuristic--------------------------------------------------------------------------------------------------------------------------------------------------
+
+//------------Alternative Heuristic and Real World--------------------------------------------------------------------------------------------------------------------------------------------------
 
 
 
@@ -255,6 +254,7 @@ Vertex<Node>* closestVertex(Vertex<Node>* current, Graph<Node> &graph, bool real
     return closest_node;
 }
 
+
 bool allVisited(Graph<Node> &graph) {
     bool flag = false;
     int i = 0;
@@ -265,6 +265,7 @@ bool allVisited(Graph<Node> &graph) {
     return flag;
 }
 
+
 vector<Vertex<Node>*> getOddVertexes(Graph<Node> &graph) {
     vector<Vertex<Node>*> oddVertexes;
     for (auto currentVertex : graph.getVertexSet()) {
@@ -272,12 +273,14 @@ vector<Vertex<Node>*> getOddVertexes(Graph<Node> &graph) {
             oddVertexes.push_back(currentVertex);
         }
     }
-    if (oddVertexes.size() % 2 == 0) {cout << "Wow there are an even number of odd vertexes, this is a rare sight" << endl;}
     return oddVertexes;
 }
 
+
 Graph<Node> findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexes, bool real) {
+    Timer timer;
     Graph<Node> mwpm;
+    timer.start();
     for (auto u : oddVertexes) {
         if (!u->isVisited()) {
             Vertex<Node>* closest = closestVertex(u, graph, real);
@@ -315,11 +318,17 @@ Graph<Node> findMWPM(Graph<Node> &graph, const vector<Vertex<Node>*>& oddVertexe
             }
         }
     }
+    cout << "Calculation of MWPM time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+
     return mwpm;
 }
+
+
 Graph<Node> combineGraphs(Graph<Node> &graph, Graph<Node> &MSTgraph, Graph<Node> &MWPM) {
+    Timer timer;
     // Create a new graph that includes all vertices from the original graph
     Graph<Node> combinedGraph = graph.getCopy();
+    timer.start();
 
     // Remove all edges from the combinedGraph
     for (auto vertex : combinedGraph.getVertexSet()) {
@@ -353,21 +362,23 @@ Graph<Node> combineGraphs(Graph<Node> &graph, Graph<Node> &MSTgraph, Graph<Node>
             combinedGraph.addEdge(edge->getOrig()->getInfo(), edge->getDest()->getInfo(), edge->getWeight());
         }
     }
+    cout << "Calculation of CombinedGraph time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
 
     return combinedGraph;
 }
 
+
 vector<int> findEulerianCircuit(Vertex<Node>* start) {
+    Timer timer;
     vector<int> euler;
     if (!start) {
         return euler; // Return empty if start is null
     }
-
+    timer.start();
     stack<Vertex<Node>*> havana;
     havana.push(start);
     while (!havana.empty()) {
         Vertex<Node>* v = havana.top();
-        cout << v->getInfo().getIndex() << endl;
         auto edges = v->getAdj();
         if (edges.empty()) {
             euler.push_back(v->getInfo().getIndex());
@@ -383,13 +394,17 @@ vector<int> findEulerianCircuit(Vertex<Node>* start) {
     }
 
     std::reverse(euler.begin(), euler.end());
+    cout << "Calculation of EulerianCircuit time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+
     return euler;
 }
 
+
 vector<int> findHamiltonCircuit(vector<int>& eulerCircuit) {
+    Timer timer;
     std::vector<int> hamilton;
     std::unordered_set<int> isVisited;
-
+    timer.start();
     for (auto vert : eulerCircuit) {
         if (isVisited.count(vert) == 0 || hamilton.empty()) {
             hamilton.push_back(vert);
@@ -397,8 +412,11 @@ vector<int> findHamiltonCircuit(vector<int>& eulerCircuit) {
         }
     }
     hamilton.push_back(0);
+    cout << "Calculation of HamiltonCircuit time: " << timer.elapsedMili()<< " Milliseconds (aprox. " << timer.elapsedSec() << " seconds)" << endl;
+
     return hamilton;
 }
+
 
 void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) {
     Timer timer;
@@ -423,14 +441,6 @@ void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) 
     min_distance = 0;
     Vertex<Node>* previous = nullptr;
 
-    cout << "Hamiltonian Ints\n";
-    for (auto vertex : hamiltonianCircuit) {
-        auto currentV = graph.findVertex(Node(vertex, "N/A", {0.0,0.0}));
-        cout << "Vertex: "<< currentV->getInfo().getIndex() << endl;
-        for (auto u : currentV->getAdj()) {
-            cout << "Edge to: "<< u->getDest()->getInfo().getIndex() << ' ' <<u->getWeight() << endl;
-        }
-    }
 
     for (auto vertex : hamiltonianCircuit) {
         minpath.push_back(vertex);
@@ -451,27 +461,17 @@ void OperationFunctions::christofides(Graph<Node> &graph, int start, bool real) 
 }
 
 
-
-
-
-
-
-
-
-
-
-
-//------------Real World--------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-Vertex<Node>* OperationFunctions::getVertexRealWorldCoordinates(Graph<Node> &graph, double lat, double lon) {
+Vertex<Node>* OperationFunctions::getVertexRealWorldCoordinates(Graph<Node> &graph, double lon, double lat) {
     for (auto u : graph.getVertexSet()) {
-        if (u->getInfo().getCoordinates().first == lat && u->getInfo().getCoordinates().second == lon) {
+        if (u->getInfo().getCoordinates().first == lon && u->getInfo().getCoordinates().second == lat) {
             return u;
         }
     }
     return nullptr;
 }
+
+
+
 
 
 

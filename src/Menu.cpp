@@ -15,6 +15,7 @@ void Menu::run() {
     while (true) {
         string decision;
         string csv_number;
+        int i;
         cout << string(LINE_SIZE_, '-') << endl;
         cout << "Welcome to the Ocean Shipping and Urban Deliveries Routing Algorithm Tool!" << endl;
         cout << string(LINE_SIZE_, '-') << endl;
@@ -54,7 +55,9 @@ void Menu::run() {
                     cout << "Available Extra Medium data sets: 25,50,75,100,200,300,400,500,600,700,800,900" << endl;
                     cout << "Please enter the number of the desired Extra Medium data set: ";
                     getline(cin, csv_number);
-                    graph = ReadFunctions::readExtra(stoi(csv_number));
+                    i = stoi(csv_number);
+                    if (i != 25 && i != 50 && i != 75 && i != 100 && i != 200 && i != 300 && i != 400 && i != 500 && i != 600 && i != 700 && i != 800 && i != 900) { cout << "Error: Extra csv number doesn't exist."; break;}
+                    graph = ReadFunctions::readExtra(i);
                     for (auto u : graph.getVertexSet()) {
                         u->getInfo().print();
                     }
@@ -209,9 +212,9 @@ void Menu::case6() {
 
 void Menu::case7() {
     string x, y;
-    cout << "Please enter the Latitude coordinate of the desired starting point: ";
-    getline(cin, x);
     cout << "Please enter the Longitude coordinate of the desired starting point: ";
+    getline(cin, x);
+    cout << "Please enter the Latitude coordinate of the desired starting point: ";
     getline(cin, y);
     Vertex<Node>* start = OperationFunctions::getVertexRealWorldCoordinates(graph, stod(x), stod(y));
     OperationFunctions::christofides(graph, start->getInfo().getIndex(), true);

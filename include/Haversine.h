@@ -4,7 +4,7 @@
 #include "Include.h"
 
 /**
- * @brief Class that represents the system that calculatess.
+ * @brief Class that represents the system that calculates distances between Nodes.
  */
 
 class Haversine {

@@ -10,7 +10,7 @@ var searchData=
   ['case7_7',['case7',['../class_menu.html#a731175a537214e83cd934fccd44922b1',1,'Menu']]],
   ['case9_8',['case9',['../class_menu.html#a0b3b3a8951d71e04feb1931bdf320b39',1,'Menu']]],
   ['christofides_9',['christofides',['../class_operation_functions.html#a587eb51647506277c15c51e74a74d5de',1,'OperationFunctions']]],
-  ['closestvertex_10',['closestVertex',['../class_operation_functions.html#a91cc173c39a81518c983efc79fd43762',1,'OperationFunctions']]],
-  ['combinegraphs_11',['combineGraphs',['../class_operation_functions.html#a62e8627b4e6eb473e49bfc64fb415ec4',1,'OperationFunctions']]],
+  ['closestvertex_10',['closestVertex',['../class_operation_functions.html#a1719ed18f29a4fbaaee98c2fd42f6550',1,'OperationFunctions']]],
+  ['combinegraphs_11',['combineGraphs',['../class_operation_functions.html#a0367033b6a92c35c2329692187d26bda',1,'OperationFunctions']]],
   ['convert_12',['convert',['../class_haversine.html#a4627acf80eedc558b4717fb1480a3af1',1,'Haversine']]]
 ];

@@ -73,7 +73,6 @@ $(function() {
 </div><!-- top -->
 <div class="header">
   <div class="summary">
-<a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="class_operation_functions-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">OperationFunctions Class Reference</div></div>
@@ -85,40 +84,16 @@ $(function() {
 
 <p><code>#include &lt;<a class="el" href="_operation_functions_8h_source.html">OperationFunctions.h</a>&gt;</code></p>
 <table class="memberdecls">
-<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
-Public Member Functions</h2></td></tr>
-<tr class="memitem:a91cc173c39a81518c983efc79fd43762" id="r_a91cc173c39a81518c983efc79fd43762"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a91cc173c39a81518c983efc79fd43762">closestVertex</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *<a class="el" href="class_edge.html">current</a>, <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">bool</a> <a class="el" href="class_edge.html">real</a>)</td></tr>
-<tr class="memdesc:a91cc173c39a81518c983efc79fd43762"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the closest vertex to the current vertex. Complexity: O(n)  <br /></td></tr>
-<tr class="separator:a91cc173c39a81518c983efc79fd43762"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a75a509798a9cdf1ca1da8ac939fbf021" id="r_a75a509798a9cdf1ca1da8ac939fbf021"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a75a509798a9cdf1ca1da8ac939fbf021">allVisited</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph)</td></tr>
-<tr class="memdesc:a75a509798a9cdf1ca1da8ac939fbf021"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all vertices in the graph have been visited. Complexity: O(n)  <br /></td></tr>
-<tr class="separator:a75a509798a9cdf1ca1da8ac939fbf021"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:af500fcf8e2614351f475d39427ef1aba" id="r_af500fcf8e2614351f475d39427ef1aba"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#af500fcf8e2614351f475d39427ef1aba">getOddVertexes</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph)</td></tr>
-<tr class="memdesc:af500fcf8e2614351f475d39427ef1aba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the odd-degree vertices in the graph. Complexity: O(n)  <br /></td></tr>
-<tr class="separator:af500fcf8e2614351f475d39427ef1aba"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a7be180514b60d38a78251b9593d702dd" id="r_a7be180514b60d38a78251b9593d702dd"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a7be180514b60d38a78251b9593d702dd">findMWPM</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">const</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt; &amp;<a class="el" href="class_edge.html">oddVertexes</a>, <a class="el" href="class_edge.html">bool</a> <a class="el" href="class_edge.html">real</a>)</td></tr>
-<tr class="memdesc:a7be180514b60d38a78251b9593d702dd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the minimum weight perfect matching (MWPM) in the graph. Complexity: O(n^2)  <br /></td></tr>
-<tr class="separator:a7be180514b60d38a78251b9593d702dd"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a62e8627b4e6eb473e49bfc64fb415ec4" id="r_a62e8627b4e6eb473e49bfc64fb415ec4"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a62e8627b4e6eb473e49bfc64fb415ec4">combineGraphs</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;<a class="el" href="class_edge.html">MSTgraph</a>, <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;<a class="el" href="class_edge.html">MWPM</a>)</td></tr>
-<tr class="memdesc:a62e8627b4e6eb473e49bfc64fb415ec4"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines the original graph, minimum spanning tree (MST), and MWPM into a single graph. Complexity: O(n)  <br /></td></tr>
-<tr class="separator:a62e8627b4e6eb473e49bfc64fb415ec4"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aabcfd24a9ebfe6958cb415ebe3528c3f" id="r_aabcfd24a9ebfe6958cb415ebe3528c3f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aabcfd24a9ebfe6958cb415ebe3528c3f">findEulerianCircuit</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *start)</td></tr>
-<tr class="memdesc:aabcfd24a9ebfe6958cb415ebe3528c3f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the Eulerian circuit in the graph starting from the specified vertex. Complexity: O(n)  <br /></td></tr>
-<tr class="separator:aabcfd24a9ebfe6958cb415ebe3528c3f"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:afc1141a01124b13b838025d6a0de208d" id="r_afc1141a01124b13b838025d6a0de208d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#afc1141a01124b13b838025d6a0de208d">findHamiltonCircuit</a> (<a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; &amp;<a class="el" href="class_edge.html">eulerCircuit</a>)</td></tr>
-<tr class="memdesc:afc1141a01124b13b838025d6a0de208d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the Eulerian circuit into a Hamiltonian circuit. Complexity: O(n)  <br /></td></tr>
-<tr class="separator:afc1141a01124b13b838025d6a0de208d"><td class="memSeparator" colspan="2">&#160;</td></tr>
-</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a23deb2ee349da451aa98f60afb697280" id="r_a23deb2ee349da451aa98f60afb697280"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">double</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a23deb2ee349da451aa98f60afb697280">distance</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_node.html">Node</a> <a class="el" href="class_edge.html">src</a>, <a class="el" href="class_node.html">Node</a> dest)</td></tr>
 <tr class="memdesc:a23deb2ee349da451aa98f60afb697280"><td class="mdescLeft">&#160;</td><td class="mdescRight">Calculates the distance between two nodes in the graph.  <br /></td></tr>
 <tr class="separator:a23deb2ee349da451aa98f60afb697280"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ab60e9d89907c2431d90d2d64eb6e6c60" id="r_ab60e9d89907c2431d90d2d64eb6e6c60"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ab60e9d89907c2431d90d2d64eb6e6c60">backtracking</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; &amp;path, <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; &amp;<a class="el" href="class_edge.html">minpath</a>, <a class="el" href="class_node.html">Node</a> <a class="el" href="class_edge.html">current_city</a>, <a class="el" href="class_edge.html">double</a> &amp;<a class="el" href="class_edge.html">min_distance</a>, <a class="el" href="class_edge.html">double</a> &amp;<a class="el" href="class_edge.html">total_distance</a>)</td></tr>
-<tr class="memdesc:ab60e9d89907c2431d90d2d64eb6e6c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs backtracking to find the minimum path in the graph. Complexity: O(N!)  <br /></td></tr>
+<tr class="memdesc:ab60e9d89907c2431d90d2d64eb6e6c60"><td class="mdescLeft">&#160;</td><td class="mdescRight">Performs backtracking to find the minimum path in the graph. Complexity: O(n!)  <br /></td></tr>
 <tr class="separator:ab60e9d89907c2431d90d2d64eb6e6c60"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a291eacd6f6dd545ec8b8beab3c2b7c55" id="r_a291eacd6f6dd545ec8b8beab3c2b7c55"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a291eacd6f6dd545ec8b8beab3c2b7c55">bound_2</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph)</td></tr>
-<tr class="memdesc:a291eacd6f6dd545ec8b8beab3c2b7c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the bound_2 algorithm to the graph. Complexity: O(N!)  <br /></td></tr>
+<tr class="memdesc:a291eacd6f6dd545ec8b8beab3c2b7c55"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the bound_2 algorithm to the graph. Complexity: O(n!)  <br /></td></tr>
 <tr class="separator:a291eacd6f6dd545ec8b8beab3c2b7c55"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ac3479cd491b1216147375301e7375e8d" id="r_ac3479cd491b1216147375301e7375e8d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ac3479cd491b1216147375301e7375e8d">prims</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">int</a> <a class="el" href="class_edge.html">i</a>)</td></tr>
 <tr class="memdesc:ac3479cd491b1216147375301e7375e8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the Prim's algorithm to the graph and returns the minimum spanning tree. O(E log V)  <br /></td></tr>
@@ -132,6 +107,27 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a5b6475d4017dbf86eb8e0884e8d2e173" id="r_a5b6475d4017dbf86eb8e0884e8d2e173"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a5b6475d4017dbf86eb8e0884e8d2e173">getVertexRealWorldCoordinates</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">double</a> <a class="el" href="class_edge.html">lat</a>, <a class="el" href="class_edge.html">double</a> <a class="el" href="class_edge.html">lon</a>)</td></tr>
 <tr class="memdesc:a5b6475d4017dbf86eb8e0884e8d2e173"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the vertex in the graph with the specified real-world coordinates. O(1)  <br /></td></tr>
 <tr class="separator:a5b6475d4017dbf86eb8e0884e8d2e173"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a1719ed18f29a4fbaaee98c2fd42f6550" id="r_a1719ed18f29a4fbaaee98c2fd42f6550"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a1719ed18f29a4fbaaee98c2fd42f6550">closestVertex</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *<a class="el" href="class_edge.html">current</a>, <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">bool</a> <a class="el" href="class_edge.html">real</a>)</td></tr>
+<tr class="memdesc:a1719ed18f29a4fbaaee98c2fd42f6550"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the closest vertex to the current vertex. Complexity: O(n)  <br /></td></tr>
+<tr class="separator:a1719ed18f29a4fbaaee98c2fd42f6550"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae0c08eb83920f0b7fdfae914fb29da0f" id="r_ae0c08eb83920f0b7fdfae914fb29da0f"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">bool</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#ae0c08eb83920f0b7fdfae914fb29da0f">allVisited</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph)</td></tr>
+<tr class="memdesc:ae0c08eb83920f0b7fdfae914fb29da0f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Checks if all vertices in the graph have been visited. Complexity: O(n)  <br /></td></tr>
+<tr class="separator:ae0c08eb83920f0b7fdfae914fb29da0f"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4997569feecedc3fe1b2b86cc38faf9b" id="r_a4997569feecedc3fe1b2b86cc38faf9b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a4997569feecedc3fe1b2b86cc38faf9b">getOddVertexes</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph)</td></tr>
+<tr class="memdesc:a4997569feecedc3fe1b2b86cc38faf9b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Gets the odd-degree vertices in the graph. Complexity: O(n)  <br /></td></tr>
+<tr class="separator:a4997569feecedc3fe1b2b86cc38faf9b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:acfcd4097722c6fc8aca6f139a3bbbc83" id="r_acfcd4097722c6fc8aca6f139a3bbbc83"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#acfcd4097722c6fc8aca6f139a3bbbc83">findMWPM</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">const</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt; &amp;<a class="el" href="class_edge.html">oddVertexes</a>, <a class="el" href="class_edge.html">bool</a> <a class="el" href="class_edge.html">real</a>)</td></tr>
+<tr class="memdesc:acfcd4097722c6fc8aca6f139a3bbbc83"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the minimum weight perfect matching (MWPM) in the graph. Complexity: O(n^2)  <br /></td></tr>
+<tr class="separator:acfcd4097722c6fc8aca6f139a3bbbc83"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0367033b6a92c35c2329692187d26bda" id="r_a0367033b6a92c35c2329692187d26bda"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a0367033b6a92c35c2329692187d26bda">combineGraphs</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;<a class="el" href="class_edge.html">MSTgraph</a>, <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;<a class="el" href="class_edge.html">MWPM</a>)</td></tr>
+<tr class="memdesc:a0367033b6a92c35c2329692187d26bda"><td class="mdescLeft">&#160;</td><td class="mdescRight">Combines the original graph, minimum spanning tree (MST), and MWPM into a single graph. Complexity: O(n)  <br /></td></tr>
+<tr class="separator:a0367033b6a92c35c2329692187d26bda"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abc9e82e0499f6a0257f3916a018340e8" id="r_abc9e82e0499f6a0257f3916a018340e8"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#abc9e82e0499f6a0257f3916a018340e8">findEulerianCircuit</a> (<a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *start)</td></tr>
+<tr class="memdesc:abc9e82e0499f6a0257f3916a018340e8"><td class="mdescLeft">&#160;</td><td class="mdescRight">Finds the Eulerian circuit in the graph starting from the specified vertex. Complexity: O(n)  <br /></td></tr>
+<tr class="separator:abc9e82e0499f6a0257f3916a018340e8"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aebd865ce9a3b57aa5d88ced97d3e8993" id="r_aebd865ce9a3b57aa5d88ced97d3e8993"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#aebd865ce9a3b57aa5d88ced97d3e8993">findHamiltonCircuit</a> (<a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; &amp;<a class="el" href="class_edge.html">eulerCircuit</a>)</td></tr>
+<tr class="memdesc:aebd865ce9a3b57aa5d88ced97d3e8993"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the Eulerian circuit into a Hamiltonian circuit. Complexity: O(n)  <br /></td></tr>
+<tr class="separator:aebd865ce9a3b57aa5d88ced97d3e8993"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a587eb51647506277c15c51e74a74d5de" id="r_a587eb51647506277c15c51e74a74d5de"><td class="memItemLeft" align="right" valign="top"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">void</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="#a587eb51647506277c15c51e74a74d5de">christofides</a> (<a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;graph, <a class="el" href="class_edge.html">int</a> start, <a class="el" href="class_edge.html">bool</a> <a class="el" href="class_edge.html">real</a>)</td></tr>
 <tr class="memdesc:a587eb51647506277c15c51e74a74d5de"><td class="mdescLeft">&#160;</td><td class="mdescRight">Applies the Christofides algorithm to the graph starting from the specified vertex. Complexity: O(n^2)  <br /></td></tr>
 <tr class="separator:a587eb51647506277c15c51e74a74d5de"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -139,19 +135,27 @@ Static Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>The <a class="el" href="class_operation_functions.html" title="The OperationFunctions class contains various operations related to graph manipulation.">OperationFunctions</a> class contains various operations related to graph manipulation. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
-<a id="a75a509798a9cdf1ca1da8ac939fbf021" name="a75a509798a9cdf1ca1da8ac939fbf021"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a75a509798a9cdf1ca1da8ac939fbf021">&#9670;&#160;</a></span>allVisited()</h2>
+<a id="ae0c08eb83920f0b7fdfae914fb29da0f" name="ae0c08eb83920f0b7fdfae914fb29da0f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae0c08eb83920f0b7fdfae914fb29da0f">&#9670;&#160;</a></span>allVisited()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_edge.html">bool</a> OperationFunctions::allVisited </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">bool</a> OperationFunctions::allVisited </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>graph</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Checks if all vertices in the graph have been visited. Complexity: O(n) </p>
@@ -212,7 +216,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Performs backtracking to find the minimum path in the graph. Complexity: O(N!) </p>
+<p>Performs backtracking to find the minimum path in the graph. Complexity: O(n!) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">graph</td><td>The graph containing the nodes. </td></tr>
@@ -250,7 +254,7 @@ Static Public Member Functions</h2></td></tr>
 </table>
 </div><div class="memdoc">
 
-<p>Applies the bound_2 algorithm to the graph. Complexity: O(N!) </p>
+<p>Applies the bound_2 algorithm to the graph. Complexity: O(n!) </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">graph</td><td>The graph to apply the algorithm to. </td></tr>
@@ -304,14 +308,17 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a91cc173c39a81518c983efc79fd43762" name="a91cc173c39a81518c983efc79fd43762"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a91cc173c39a81518c983efc79fd43762">&#9670;&#160;</a></span>closestVertex()</h2>
+<a id="a1719ed18f29a4fbaaee98c2fd42f6550" name="a1719ed18f29a4fbaaee98c2fd42f6550"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a1719ed18f29a4fbaaee98c2fd42f6550">&#9670;&#160;</a></span>closestVertex()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * OperationFunctions::closestVertex </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * OperationFunctions::closestVertex </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>current</em>, </span></td>
         </tr>
@@ -326,6 +333,11 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_edge.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>real</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Finds the closest vertex to the current vertex. Complexity: O(n) </p>
@@ -341,14 +353,17 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a62e8627b4e6eb473e49bfc64fb415ec4" name="a62e8627b4e6eb473e49bfc64fb415ec4"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a62e8627b4e6eb473e49bfc64fb415ec4">&#9670;&#160;</a></span>combineGraphs()</h2>
+<a id="a0367033b6a92c35c2329692187d26bda" name="a0367033b6a92c35c2329692187d26bda"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0367033b6a92c35c2329692187d26bda">&#9670;&#160;</a></span>combineGraphs()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; OperationFunctions::combineGraphs </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; OperationFunctions::combineGraphs </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>graph</em>, </span></td>
         </tr>
@@ -363,6 +378,11 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>MWPM</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Combines the original graph, minimum spanning tree (MST), and MWPM into a single graph. Complexity: O(n) </p>
@@ -423,19 +443,27 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="aabcfd24a9ebfe6958cb415ebe3528c3f" name="aabcfd24a9ebfe6958cb415ebe3528c3f"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#aabcfd24a9ebfe6958cb415ebe3528c3f">&#9670;&#160;</a></span>findEulerianCircuit()</h2>
+<a id="abc9e82e0499f6a0257f3916a018340e8" name="abc9e82e0499f6a0257f3916a018340e8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#abc9e82e0499f6a0257f3916a018340e8">&#9670;&#160;</a></span>findEulerianCircuit()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; OperationFunctions::findEulerianCircuit </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; OperationFunctions::findEulerianCircuit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; *</td>          <td class="paramname"><span class="paramname"><em>start</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Finds the Eulerian circuit in the graph starting from the specified vertex. Complexity: O(n) </p>
@@ -449,19 +477,27 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="afc1141a01124b13b838025d6a0de208d" name="afc1141a01124b13b838025d6a0de208d"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#afc1141a01124b13b838025d6a0de208d">&#9670;&#160;</a></span>findHamiltonCircuit()</h2>
+<a id="aebd865ce9a3b57aa5d88ced97d3e8993" name="aebd865ce9a3b57aa5d88ced97d3e8993"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aebd865ce9a3b57aa5d88ced97d3e8993">&#9670;&#160;</a></span>findHamiltonCircuit()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; OperationFunctions::findHamiltonCircuit </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; OperationFunctions::findHamiltonCircuit </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_edge.html">int</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>eulerCircuit</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Converts the Eulerian circuit into a Hamiltonian circuit. Complexity: O(n) </p>
@@ -475,14 +511,17 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="a7be180514b60d38a78251b9593d702dd" name="a7be180514b60d38a78251b9593d702dd"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7be180514b60d38a78251b9593d702dd">&#9670;&#160;</a></span>findMWPM()</h2>
+<a id="acfcd4097722c6fc8aca6f139a3bbbc83" name="acfcd4097722c6fc8aca6f139a3bbbc83"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#acfcd4097722c6fc8aca6f139a3bbbc83">&#9670;&#160;</a></span>findMWPM()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; OperationFunctions::findMWPM </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; OperationFunctions::findMWPM </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>graph</em>, </span></td>
         </tr>
@@ -497,6 +536,11 @@ Static Public Member Functions</h2></td></tr>
           <td class="paramtype"><a class="el" href="class_edge.html">bool</a></td>          <td class="paramname"><span class="paramname"><em>real</em></span>&#160;)</td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Finds the minimum weight perfect matching (MWPM) in the graph. Complexity: O(n^2) </p>
@@ -512,19 +556,27 @@ Static Public Member Functions</h2></td></tr>
 
 </div>
 </div>
-<a id="af500fcf8e2614351f475d39427ef1aba" name="af500fcf8e2614351f475d39427ef1aba"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#af500fcf8e2614351f475d39427ef1aba">&#9670;&#160;</a></span>getOddVertexes()</h2>
+<a id="a4997569feecedc3fe1b2b86cc38faf9b" name="a4997569feecedc3fe1b2b86cc38faf9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4997569feecedc3fe1b2b86cc38faf9b">&#9670;&#160;</a></span>getOddVertexes()</h2>
 
 <div class="memitem">
 <div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
       <table class="memname">
         <tr>
-          <td class="memname"><a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt; OperationFunctions::getOddVertexes </td>
+          <td class="memname"><a class="el" href="class_edge.html">static</a> <a class="el" href="class_edge.html">vector</a>&lt; <a class="el" href="class_vertex.html">Vertex</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; * &gt; OperationFunctions::getOddVertexes </td>
           <td>(</td>
           <td class="paramtype"><a class="el" href="class_graph.html">Graph</a>&lt; <a class="el" href="class_node.html">Node</a> &gt; &amp;</td>          <td class="paramname"><span class="paramname"><em>graph</em></span></td><td>)</td>
           <td></td>
         </tr>
       </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
 </div><div class="memdoc">
 
 <p>Gets the odd-degree vertices in the graph. Complexity: O(n) </p>
